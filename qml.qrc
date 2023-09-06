@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Panel.qml</file>
+        <file>ResultText.qml</file>
+        <file>Charts.qml</file>
+        <file>ComboBoxChart.qml</file>
+        <file>ErrorChart.qml</file>
+    </qresource>
+</RCC>
