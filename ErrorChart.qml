@@ -15,7 +15,7 @@ Item {
 
         lineSeries.clear();
         for (var i = 0; i < neuron.ErrorValue.length ; i++) {
-            var x = i + 1;
+            var x = (i + 1) / neuron.ErrorValue.length * panel.fieldEpochText;
             lineSeries.append(x, neuron.ErrorValue[i]);
         }
     }
@@ -25,7 +25,7 @@ Item {
 
         lineSeriesValid.clear();
         for (var i = 0; i < neuron.ErrorValueValid.length ; i++) {
-            var x = i + 1;
+            var x = (i + 1) / neuron.ErrorValue.length * panel.fieldEpochText;
             lineSeries.append(x, neuron.ErrorValueValid[i]);
         }
     }
@@ -52,8 +52,10 @@ Item {
 
             ValueAxis {
                 id: axisX
+
                 min: 0
-                max: panel.fieldEpochText * neuron.MaxValueProgressBar
+                max: panel.fieldEpochText
+                tickCount: parseInt(max) + 1
                 minorTickCount:neuron.ErrorValue.length
 
 
@@ -61,6 +63,7 @@ Item {
 
             ValueAxis {
                 id: axisY
+
                 min: 0
                 max: 1.0
                 tickCount: 11
@@ -71,7 +74,7 @@ Item {
 
             ValueAxis {
                 id: axisYvalid
-                visible: false
+
                 max: 1.0
                 tickCount: 11
 
@@ -81,10 +84,10 @@ Item {
 
             ValueAxis {
                 id: axisXvalid
-                visible: false
+
                 min: 0
                 max: panel.fieldEpochText
-                tickCount: panel.fieldEpochText
+                tickCount: parseInt(max) + 1
                 minorTickCount: neuron.ErrorValueValid.length
 
 
@@ -93,6 +96,7 @@ Item {
 
             LineSeries {
                 id: lineSeries
+
                 name: "Network Errors"
                 axisX: axisX
                 axisY: axisY
@@ -106,11 +110,7 @@ Item {
 
                 axisX: axisXvalid
                 axisY: axisYvalid
-                XYPoint { x: 0; y: 0 }
-                        XYPoint { x: 1; y: 1 }
-                        XYPoint { x: 2; y: 2 }
-                        XYPoint { x: 3; y: 3 }
-                        XYPoint { x: 4; y: 4 }
+
 
 
 
