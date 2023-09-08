@@ -63,6 +63,7 @@ public:
     void MinMax(QVector<double> & _input);
     void FeedForward( const QVector<double>& _input); //функция прямого распространения
     void Backpropagation(const QVector<double>& _target ); //Обратное распространение ошибки
+    void Validation(const QVector<double>& _target);
 
 };
 

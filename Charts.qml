@@ -37,11 +37,18 @@ Item {
         border.color: "black"
         border.width: 1
 
+
+
+               }
+
         ChartView {
             id: chart
             //title: "Line"
             anchors.fill: parent
             antialiasing: true
+
+
+
 
 
 
@@ -54,6 +61,7 @@ Item {
                 //labelFormat: "%.1f"
                 //titleText: "X"
                 tickCount: 6
+
 
             }
 
@@ -74,9 +82,11 @@ Item {
                 axisX: axisX
                 axisY: axisY
 
+
+
             }
         }
     }
-}
+
 
 

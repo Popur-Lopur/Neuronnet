@@ -194,6 +194,18 @@ void NeuronNetwork::Backpropagation( const QVector<double>& _target)
 
 }
 
+void NeuronNetwork::Validation(const QVector<double> &_target)
+{
+    m_TargetValue = _target;
+    //вычисление ошибки выходного слоя +++
+
+    for (int i = 0; i < m_OutputSize; ++i)
+    {
+        m_OutputErrorValues[i] =   m_TargetValue[i] - m_OutputNeuronsValues[i];
+
+    }
+}
+
 
 
 

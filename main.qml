@@ -41,17 +41,23 @@ Window {
     Button {
         id: trainBtn
         text: "TRAIN"
-        signal vecErrorSelected(var dataError);
+
         anchors.top: testBtn.bottom
         anchors.left: panel.right
         anchors.margins: 10
 
 
 
+
+
         onClicked: {
+
+            comboboxload.loadDataTrain(panel.fieldDataText)
+            comboChartFirst.modelTrainData()
+            comboChartSecond.modelTrainData()
+
             neuron.runTrain()
-            var dataError = neuron.ErrorValue
-            errorchart.plotData();
+
 
         }
     }
@@ -66,6 +72,9 @@ Window {
 
 
         onClicked: {
+            comboboxload.loadData(panel.fieldDataText)
+            comboChartFirst.modelData()
+            comboChartSecond.modelData()
             neuron.runTest()
 
         }
@@ -140,7 +149,22 @@ Window {
     Button {
         id: btnStop
         anchors.top: parent.top
-        anchors.left: control.right
+        anchors.left: control.right        
+        contentItem: Rectangle {
+            radius: 5
+            anchors.fill: parent
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+
+                GradientStop { position: 0.9; color: "#4b6cb7" }
+                GradientStop { position: 0.6; color: "#182848" }
+            }
+
+            Text {
+                        text: btnStopText.text
+                        anchors.centerIn: parent
+                    }
+        }
 
         anchors.margins: 10
 
@@ -148,14 +172,15 @@ Window {
             id: btnStopText
             text: "STOP"
             anchors.centerIn: parent
-            color: "black"
+            color: "white"
         }
         onClicked: {
             updateColor();
+            errorchart.plotData();
 
 
 
-        }
+       }
     }
 
     Button {
@@ -179,8 +204,10 @@ Window {
             neuron.setNumberOutput(panel.fieldOutputText)
             neuron.setLearningRate(panel.fieldLrText)
             neuron.setFilename(panel.fieldDataText)
+            neuron.setFilenameValid(panel.fieldDataValidText)
             neuron.setWeights(panel.fieldWeightText)
-            comboboxload.loadData(panel.fieldDataText)
+
+
 
         }
     }
@@ -222,28 +249,13 @@ Window {
 
                         GradientStop { position: 0.0; color: "#a8e063" }
                         GradientStop { position: 0.9; color: "#56ab2f" }
-                        //GradientStop { position: 0.2; color: "#2c5364" }
+
 
                     }
                 }
             }
-
-
-//                PropertyAnimation {
-//                    target: control
-//                    property: "value"
-//                    from: 0
-//                    to: neuron.MaxValueProgressBar
-//                    duration: 10000
-//                    running: true
-//                    loops: Animation.alwaysRunToEnd
-//                    easing.type: Easing.Linear
-//                }
-            }
+        }
     }
-
-
-
 
     Connections {
         target: comboChartFirst
@@ -258,11 +270,14 @@ Window {
         }
     }
     Connections {
-        target: trainBtn
+        target: btnStop
         onErrorValueChanged: {
             errorchart.plotData();
         }
     }
+
+
+
 }
 
 

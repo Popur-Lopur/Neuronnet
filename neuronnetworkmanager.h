@@ -23,10 +23,13 @@ class NeuronNetworkManager : public QObject
     Q_PROPERTY(int NumberOutput READ NumberOutput WRITE setNumberOutput NOTIFY NumberOutputChanged)
     Q_PROPERTY(double LearningRate READ LearningRate WRITE setLearningRate NOTIFY LearningRateChanged)
     Q_PROPERTY(QString Filename READ Filename WRITE setFilename NOTIFY FilenameChanged)
+    Q_PROPERTY(QString FilenameValid READ FilenameValid WRITE setFilenameValid NOTIFY FilenameValidChanged)
     Q_PROPERTY(QString Weights READ Weights WRITE setWeights NOTIFY WeightsChanged)
     Q_PROPERTY(int ValueProgressBar READ ValueProgressBar WRITE setValueProgressBar NOTIFY ValueProgressBarChanged)
     Q_PROPERTY(int MaxValueProgressBar READ MaxValueProgressBar NOTIFY MaxValueProgressBarChanged)
     Q_PROPERTY(QVector<double> ErrorValue READ ErrorValue NOTIFY ErrorValueChanged)
+    Q_PROPERTY(QVector<double> ErrorValueValid READ ErrorValueValid NOTIFY ErrorValueValidChanged)
+
 
 
 
@@ -37,11 +40,13 @@ public:
 
 
 
+
     int m_myEpoch;
     int m_NumberHidden;
     int m_NumberOutput;
     double m_LearningRate;
     QString m_Filename;
+    QString m_FilenameValid;
     QString m_Weights;
     int m_ValueProgressBar;
     int m_MaxValueProgressBar;
@@ -52,6 +57,13 @@ public:
     double MseError;
     int m_NumberInputs;
     QVector<double> m_ErrorValue;
+    QVector<double> m_ErrorValueValid;
+
+    QVector<double> ErrorValueValid() const {
+
+        return m_ErrorValueValid;
+
+    }
 
     QVector<double> ErrorValue() const {
 
@@ -89,17 +101,25 @@ public:
         return m_Filename;
     }
 
+
+
+    QString FilenameValid() const {
+        return m_FilenameValid;
+    }
+
     QString Weights() const {
         return m_Weights;
     }
 
 signals:
+    void ErrorValueValidChanged();
     void ErrorValueChanged();
     void EpochChanged();
     void NumberHiddenChanged();
     void NumberOutputChanged();
     void LearningRateChanged();
     void FilenameChanged();
+    void FilenameValidChanged();
     void WeightsChanged();
     void ValueProgressBarChanged(int ValueProgressBar);
     void MaxValueProgressBarChanged();
@@ -141,6 +161,13 @@ public slots:
     void setFilename(const QString& valueFile) {
         m_Filename = valueFile;
         emit FilenameChanged();
+    }
+
+
+
+    void setFilenameValid(const QString& valueFile) {
+        m_FilenameValid = valueFile;
+        emit FilenameValidChanged();
     }
 
     void setWeights(const QString& valueWeight) {
