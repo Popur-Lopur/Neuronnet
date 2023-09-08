@@ -71,6 +71,7 @@ Item {
 
             ValueAxis {
                 id: axisYvalid
+                visible: false
                 max: 1.0
                 tickCount: 11
 
@@ -80,6 +81,7 @@ Item {
 
             ValueAxis {
                 id: axisXvalid
+                visible: false
                 min: 0
                 max: panel.fieldEpochText
                 tickCount: panel.fieldEpochText
@@ -101,8 +103,16 @@ Item {
             LineSeries {
                 id: lineSeriesValid
                 name: "Valid Errors"
+
                 axisX: axisXvalid
                 axisY: axisYvalid
+                XYPoint { x: 0; y: 0 }
+                        XYPoint { x: 1; y: 1 }
+                        XYPoint { x: 2; y: 2 }
+                        XYPoint { x: 3; y: 3 }
+                        XYPoint { x: 4; y: 4 }
+
+
 
 
             }
