@@ -9,20 +9,24 @@ Item {
     width: 560
     height: 300
 
-     property var yValues: []
 
     function plotData() {
-//        console.log("=============== 1 =================")
-//        for (var k = 0; k < 10; k++){
-//            console.log("-->" + neuron.ErrorValue[k])
-//        }
-//        console.log("=============== 1 =================")
+
 
         lineSeries.clear();
-        //yValues = neuron.ErrorValue;
         for (var i = 0; i < neuron.ErrorValue.length ; i++) {
             var x = i + 1;
             lineSeries.append(x, neuron.ErrorValue[i]);
+        }
+    }
+
+    function plotValidData() {
+
+
+        lineSeriesValid.clear();
+        for (var i = 0; i < neuron.ErrorValueValid.length ; i++) {
+            var x = i + 1;
+            lineSeries.append(x, neuron.ErrorValueValid[i]);
         }
     }
 
@@ -50,8 +54,8 @@ Item {
                 id: axisX
                 min: 0
                 max: panel.fieldEpochText * neuron.MaxValueProgressBar
-                //tickCount: axisX.max + 1
-                //minorTickCount: 3
+                minorTickCount:neuron.ErrorValue.length
+
 
             }
 
@@ -65,18 +69,41 @@ Item {
 
             }
 
+            ValueAxis {
+                id: axisYvalid
+                max: 1.0
+                tickCount: 11
+
+
+
+            }
+
+            ValueAxis {
+                id: axisXvalid
+                min: 0
+                max: panel.fieldEpochText
+                tickCount: panel.fieldEpochText
+                minorTickCount: neuron.ErrorValueValid.length
+
+
+
+            }
+
             LineSeries {
                 id: lineSeries
                 name: "Network Errors"
                 axisX: axisX
                 axisY: axisY
-//                Component.onCompleted: {
-//                            var errorValues = neuron.ErrorValue;
-//                            for (var i = 0; i < errorValues.length; ++i) {
-//                                x = i + 1
-//                                lineSeries.append(x, errorValues[i]);
-//                            }
-//                        }
+
+
+            }
+
+            LineSeries {
+                id: lineSeriesValid
+                name: "Valid Errors"
+                axisX: axisXvalid
+                axisY: axisYvalid
+
 
             }
         }
