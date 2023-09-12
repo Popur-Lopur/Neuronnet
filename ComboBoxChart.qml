@@ -46,7 +46,7 @@ Item {
 
         anchors.fill: parent
 
-        model: model2
+//        model: model2
 
         textRole: "id"
         onActivated: {

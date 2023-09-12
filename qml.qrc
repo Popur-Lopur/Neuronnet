@@ -6,5 +6,6 @@
         <file>Charts.qml</file>
         <file>ComboBoxChart.qml</file>
         <file>ErrorChart.qml</file>
+        <file>ErrorValidChart.qml</file>
     </qresource>
 </RCC>

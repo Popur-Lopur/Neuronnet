@@ -12,81 +12,17 @@ import NeuronNetworkManager 1.0
 Window {
     id: win
     visible: true
-    width: 1250
-    height: 700
+    width: 1360
+    height: 760
     title: qsTr("Qvazi")
     color: "#948E99"
 
-
-//    Rectangle {
-//        id:fon
-//        color: "#0f2027"
-//        //color: "#0f2027"
-//        anchors.fill: parent
-//        gradient: Gradient {
-
-//            GradientStop { position: 0.9; color: "#0f2027" }
-//            GradientStop { position: 0.6; color: "#203a43" }
-//            GradientStop { position: 0.2; color: "#2c5364" }
-
-//        }
-//    }
-
-
-
-    function updateColor() {
-        win.color = Qt.rgba(Math.random(), Math.random(), Math.random());
-    }
-
-    Button {
-        id: trainBtn
-        text: "TRAIN"
-
-        anchors.top: testBtn.bottom
-        anchors.left: panel.right
-        anchors.margins: 10
-
-
-
-
-
-        onClicked: {
-
-            comboboxload.loadDataTrain(panel.fieldDataText)
-            comboChartFirst.modelTrainData()
-            comboChartSecond.modelTrainData()
-
-            neuron.runTrain()
-
-
-        }
-    }
-
-    Button {
-        id: testBtn        
-        text: "TEST"
-            anchors.top: btnStop.bottom
-            anchors.left: panel.right
-            anchors.margins: 10
-
-
-
-        onClicked: {
-            comboboxload.loadData(panel.fieldDataText)
-            comboChartFirst.modelData()
-            comboChartSecond.modelData()
-            neuron.runTest()
-
-        }
-    }
-
     ResultText {
-        id: resulttext
-        anchors.topMargin: 10
+        id: resulttext        
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.margins: 10
+        anchors.bottom: errorvalidchart.top
+        anchors.margins: 5
 
     }
 
@@ -102,20 +38,32 @@ Window {
 
     Charts {
         id: secondPlot
-        anchors.left: parent.left
-        anchors.bottom: parent.bottom
+        anchors.left: firstPlot.right
+        anchors.top: parent.top
         anchors.margins: 10
-        anchors.bottomMargin: 10
+        anchors.topMargin: 40
 
 
     }
 
     ErrorChart {
         id: errorchart
-        anchors.left: secondPlot.right
+        width: parent.width/2
+        anchors.left: parent.left
         anchors.bottom: parent.bottom
-        anchors.margins: 10
-        anchors.bottomMargin: 10
+        anchors.margins: 5
+        //anchors.bottomMargin: 5
+
+
+    }
+
+    ErrorValidChart {
+        id: errorvalidchart
+        width: parent.width/2
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 5
+        //anchors.bottomMargin: 5
 
 
     }
@@ -123,7 +71,7 @@ Window {
     Panel {
         id: panel
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: resulttext.left
         anchors.margins: 10
 
     }
@@ -148,37 +96,36 @@ Window {
 
     Button {
         id: btnStop
-        anchors.top: parent.top
-        anchors.left: control.right        
-        contentItem: Rectangle {
-            radius: 5
-            anchors.fill: parent
-            gradient: Gradient {
-                orientation: Gradient.Vertical
-
-                GradientStop { position: 0.9; color: "#4b6cb7" }
-                GradientStop { position: 0.6; color: "#182848" }
-            }
-
-            Text {
-                        text: btnStopText.text
-                        anchors.centerIn: parent
-                    }
-        }
-
+        anchors.top: panel.bottom
+        anchors.right: resulttext.left
         anchors.margins: 10
 
         Text {
             id: btnStopText
-            text: "STOP"
+            text: "PUSH 1"
             anchors.centerIn: parent
-            color: "white"
+            color: "black"
+        }
+        onClicked: {            
+            errorchart.plotData();
+       }
+    }
+
+    Button {
+        id: btnPush
+        anchors.top: control.bottom
+        anchors.right: resulttext.left
+        anchors.margins: 10
+
+        Text {
+            id: btnPushText
+            text: "PUSH 2"
+            anchors.centerIn: parent
+            color: "black"
         }
         onClicked: {
-            updateColor();
-            errorchart.plotData();
 
-
+            errorvalidchart.plotValidData();
 
        }
     }
@@ -186,8 +133,7 @@ Window {
     Button {
         id: btnSave
         anchors.top: panel.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
+        anchors.right: btnStop.left
         anchors.margins: 10
 
 
@@ -206,8 +152,42 @@ Window {
             neuron.setFilename(panel.fieldDataText)
             neuron.setFilenameValid(panel.fieldDataValidText)
             neuron.setWeights(panel.fieldWeightText)
+        }
+    }
+
+    Button {
+        id: trainBtn
+        text: "TRAIN"
+
+        anchors.top: btnSave.bottom
+        anchors.right: testBtn.left
+        anchors.margins: 10
+        onClicked: {
+
+            comboboxload.loadDataTrain(panel.fieldDataText)
+            comboChartFirst.modelTrainData()
+            comboChartSecond.modelTrainData()
+
+            neuron.runTrain()
 
 
+        }
+    }
+
+    Button {
+        id: testBtn
+        text: "TEST"
+            anchors.top: btnStop.bottom
+            anchors.right: resulttext.left
+            anchors.margins: 10
+
+
+
+        onClicked: {
+            comboboxload.loadData(panel.fieldDataText)
+            comboChartFirst.modelData()
+            comboChartSecond.modelData()
+            neuron.runTest()
 
         }
     }
@@ -218,9 +198,9 @@ Window {
         from: 0
         to: neuron.MaxValueProgressBar
         padding: 1
-        anchors.top: btnSave.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
+        anchors.top: trainBtn.bottom
+        anchors.right: testBtn.right
+        anchors.topMargin: 5
 
 
 
@@ -269,15 +249,6 @@ Window {
             secondPlot.vectorReceived(data);
         }
     }
-    Connections {
-        target: btnStop
-        onErrorValueChanged: {
-            errorchart.plotData();
-        }
-    }
-
-
-
 }
 
 

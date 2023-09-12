@@ -30,36 +30,15 @@ Item {
     }
 
 
-    Rectangle {
-        id: rectPlot
-        anchors.fill: parent
-        //radius: 10
-        border.color: "black"
-        border.width: 1
-
-
-
-               }
-
         ChartView {
             id: chart
-            //title: "Line"
             anchors.fill: parent
-            antialiasing: true
-
-
-
-
-
-
-
+            //antialiasing: true
 
             ValueAxis {
                 id: axisX
                 min: 0
                 max: 25000
-                //labelFormat: "%.1f"
-                //titleText: "X"
                 tickCount: 6
 
 
@@ -68,9 +47,7 @@ Item {
             ValueAxis {
                 id: axisY
                 min: 0
-                max: 160
-                //labelFormat: "%.1f"
-                //titleText: "Y "
+                max: 160               
                 tickCount: 9
 
 
@@ -81,8 +58,6 @@ Item {
                 name: "Wideband"
                 axisX: axisX
                 axisY: axisY
-
-
 
             }
         }
