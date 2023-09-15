@@ -4,6 +4,9 @@
 #include "neuronnetwork.h"
 #include <QString>
 #include <QList>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 class SaveLoadWeights  {
 

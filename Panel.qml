@@ -407,7 +407,7 @@ Item {
                     anchors.fill: parent
                     color: "white"
                     onTextChanged: {
-                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".txt"
+                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".json"
                     }
                     background: Rectangle {
                         width: lenghtVal

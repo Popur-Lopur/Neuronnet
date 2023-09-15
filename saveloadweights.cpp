@@ -8,6 +8,8 @@
 
 
 
+
+
 SaveLoadWeights::SaveLoadWeights()
 {
 
@@ -15,175 +17,130 @@ SaveLoadWeights::SaveLoadWeights()
 
 void SaveLoadWeights::SaveDataWeights(QString filename, NeuronNetwork& nn)
 {
-
     QFile file(filename);
     QTextStream out(&file);
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        for (int i = 0; i < nn.m_InputSize; ++i)
-        {
-            out  << "Input-Hidden" ;
-            for (int j = 0; j < nn.m_HiddenSize; ++j)
-            {
-                out  << " " << nn.m_InputBetweenHidden_Weights[i][j];
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QJsonObject rootObject;
+
+            rootObject["HiddenSize"] = QJsonValue(nn.m_HiddenSize);
+            rootObject["OutputSize"] = QJsonValue(nn.m_OutputSize);
+            rootObject["LearningRate"] = QJsonValue(nn.m_LearningRate);
+
+            // Сохранение матрицы весов между входами и скрытым слоем
+            QJsonArray inputHiddenWeights;
+            for (int i = 0; i < nn.m_InputSize; ++i) {
+                QJsonArray row;
+                for (int j = 0; j < nn.m_HiddenSize; ++j) {
+                    row.append(nn.m_InputBetweenHidden_Weights[i][j]);
+                }
+                inputHiddenWeights.append(row);
             }
-            out << endl;
-        }
+            rootObject["InputHiddenWeights"] = inputHiddenWeights;
 
-        for (int i = 0; i < nn.m_HiddenSize; ++i)
-        {
-            out <<  "Hidden-Output" ;
-            for (int j = 0; j < nn.m_OutputSize; ++j)
-            {
-                out  << " " << nn.m_HiddenBetweenOutput_Weights[i][j];
+            // Сохранение матрицы весов между скрытым слоем и выходом
+            QJsonArray hiddenOutputWeights;
+            for (int i = 0; i < nn.m_HiddenSize; ++i) {
+                QJsonArray row;
+                for (int j = 0; j < nn.m_OutputSize; ++j) {
+                    row.append(nn.m_HiddenBetweenOutput_Weights[i][j]);
+                }
+                hiddenOutputWeights.append(row);
             }
-            out << endl;
+            rootObject["HiddenOutputWeights"] = hiddenOutputWeights;
+
+            // Сохранение весов скрытого слоя
+            QJsonArray hiddenBiases;
+            for (int i = 0; i < nn.m_HiddenSize; ++i) {
+                hiddenBiases.append(nn.m_HiddenBiases[i]);
+            }
+            rootObject["HiddenBiases"] = hiddenBiases;
+
+            // Сохранение весов выходного слоя
+            QJsonArray outputBiases;
+            for (int i = 0; i < nn.m_OutputSize; ++i) {
+                outputBiases.append(nn.m_OutputBiases[i]);
+            }
+            rootObject["OutputBiases"] = outputBiases;
+
+            // Запись JSON-документа в файл
+            QJsonDocument jsonDoc(rootObject);
+            file.write(jsonDoc.toJson(QJsonDocument::Indented));
+
+            file.close();
+            qDebug() << "Weights successfully saved in:" << filename << endl;
+        } else {
+            qDebug() << "Weights didn't save in:" << filename << endl;
         }
-
-        for (int i = 0; i < nn.m_HiddenSize; ++i)
-        {
-            out << "Hidden Biases" << " " << nn.m_HiddenBiases[i];
-        out << endl;
-        }
-
-        for (int i = 0; i < nn.m_OutputSize; ++i)
-        {
-            out << "Output Biases" << " " << nn.m_OutputBiases[i];
-        out << endl;
-        }
-        file.close();
-        qDebug() << "Weights successful saved in:" << filename << endl;
-    }
-    else {
-        qDebug() << "Weights  didn't  saved in:" << filename << endl;
-    }
-
-//    QFile file(filename);
-//    QTextStream out(&file);
-//        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-//            QJsonObject rootObject;
-
-//            // Сохранение матрицы весов между входами и скрытым слоем
-//            QJsonArray inputHiddenWeights;
-//            for (int i = 0; i < nn.m_InputSize; ++i) {
-//                QJsonArray row;
-//                for (int j = 0; j < nn.m_HiddenSize; ++j) {
-//                    row.append(nn.m_InputBetweenHidden_Weights[i][j]);
-//                }
-//                inputHiddenWeights.append(row);
-//            }
-//            rootObject["InputHiddenWeights"] = inputHiddenWeights;
-
-//            // Сохранение матрицы весов между скрытым слоем и выходом
-//            QJsonArray hiddenOutputWeights;
-//            for (int i = 0; i < nn.m_HiddenSize; ++i) {
-//                QJsonArray row;
-//                for (int j = 0; j < nn.m_OutputSize; ++j) {
-//                    row.append(nn.m_HiddenBetweenOutput_Weights[i][j]);
-//                }
-//                hiddenOutputWeights.append(row);
-//            }
-//            rootObject["HiddenOutputWeights"] = hiddenOutputWeights;
-
-//            // Сохранение весов скрытого слоя
-//            QJsonArray hiddenBiases;
-//            for (int i = 0; i < nn.m_HiddenSize; ++i) {
-//                hiddenBiases.append(nn.m_HiddenBiases[i]);
-//            }
-//            rootObject["HiddenBiases"] = hiddenBiases;
-
-//            // Сохранение весов выходного слоя
-//            QJsonArray outputBiases;
-//            for (int i = 0; i < nn.m_OutputSize; ++i) {
-//                outputBiases.append(nn.m_OutputBiases[i]);
-//            }
-//            rootObject["OutputBiases"] = outputBiases;
-
-//            // Запись JSON-документа в файл
-//            QJsonDocument jsonDoc(rootObject);
-//            file.write(jsonDoc.toJson(QJsonDocument::Indented));
-
-//            file.close();
-//            qDebug() << "Weights successfully saved in:" << filename << endl;
-//        } else {
-//            qDebug() << "Weights didn't save in:" << filename << endl;
-//        }
 }
 
 void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn)
 {
-    QVector<QString> IHvec;
-    QVector<QString> HOvec;
-    QVector<QString> HBvec;
-    QVector<QString> OBvec;
-
     QFile file(filename);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QTextStream in(&file);
-
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            if (line.startsWith("Input-Hidden"))
-            {
-                line.remove("Input-Hidden ");
-                IHvec.append(line);
-            }
-            if (line.startsWith("Hidden-Output"))
-            {
-                line.remove("Hidden-Output ");
-                HOvec.append(line);
-            }
-            if (line.startsWith("Hidden Biases"))
-            {
-                line.remove("Hidden Biases ");
-                HBvec.append(line);
-            }
-            if (line.startsWith("Output Biases"))
-            {
-                line.remove("Output Biases ");
-                OBvec.append(line);
-            }
-        }
-
-        file.close();
-
-        for (int i = 0; i < IHvec.size(); ++i)
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            QStringList values = IHvec[i].split(" ");
-            for (int j = 0; j < values.size(); ++j) {
-                nn.m_InputBetweenHidden_Weights[i][j] = values[j].toDouble();
+            QByteArray jsonData = file.readAll();
+            file.close();
+
+            QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+            if (!doc.isNull()) {
+                QJsonObject rootObject = doc.object();
+
+                if (rootObject.contains("HiddenSize") && rootObject.contains("OutputSize") && rootObject.contains("LearningRate")) {
+                    nn.m_HiddenSize = rootObject["HiddenSize"].toInt();
+                    nn.m_OutputSize = rootObject["OutputSize"].toInt();
+                    nn.m_LearningRate = rootObject["LearningRate"].toDouble();
+
+                }
+
+
+
+
+                // Загрузка матрицы весов между входами и скрытым слоем
+                if (rootObject.contains("InputHiddenWeights")) {
+                    QJsonArray inputHiddenWeights = rootObject["InputHiddenWeights"].toArray();
+                    for (int i = 0; i < nn.m_InputSize; ++i) {
+                        QJsonArray row = inputHiddenWeights[i].toArray();
+                        for (int j = 0; j < nn.m_HiddenSize; ++j) {
+                            nn.m_InputBetweenHidden_Weights[i][j] = row[j].toDouble();
+
+                        }
+                    }
+                }
+
+                // Загрузка матрицы весов между скрытым слоем и выходом
+                if (rootObject.contains("HiddenOutputWeights")) {
+                    QJsonArray hiddenOutputWeights = rootObject["HiddenOutputWeights"].toArray();
+                    for (int i = 0; i < nn.m_HiddenSize; ++i) {
+                        QJsonArray row = hiddenOutputWeights[i].toArray();
+                        for (int j = 0; j < nn.m_OutputSize; ++j) {
+                            nn.m_HiddenBetweenOutput_Weights[i][j] = row[j].toDouble();
+                        }
+                    }
+                }
+
+                // Загрузка весов скрытого слоя
+                if (rootObject.contains("HiddenBiases")) {
+                    QJsonArray hiddenBiases = rootObject["HiddenBiases"].toArray();
+                    for (int i = 0; i < nn.m_HiddenSize; ++i) {
+                        nn.m_HiddenBiases[i] = hiddenBiases[i].toDouble();
+                    }
+                }
+
+                // Загрузка весов выходного слоя
+                if (rootObject.contains("OutputBiases")) {
+                    QJsonArray outputBiases = rootObject["OutputBiases"].toArray();
+                    for (int i = 0; i < nn.m_OutputSize; ++i) {
+                        nn.m_OutputBiases[i] = outputBiases[i].toDouble();
+                    }
+                }
+
+                qDebug() << "Weights successfully loaded from:" << filename << endl;
+            }
+            else {
+                qDebug() << "Failed to parse JSON data from:" << filename << endl;
             }
         }
-
-        for (int i = 0; i < HOvec.size(); ++i)
-        {
-            QStringList values = HOvec[i].split(" ");
-            for (int j = 0; j < values.size(); ++j) {
-                nn.m_HiddenBetweenOutput_Weights[i][j] = values[j].toDouble();
-            }
+        else {
+            qDebug() << "Weights didn't load from:" << filename << endl;
         }
-
-        for (int i = 0; i < HBvec.size(); ++i)
-        {
-            QStringList values = HBvec[i].split(" ");
-            for (int j = 0; j < values.size(); ++j) {
-                nn.m_HiddenBiases[i] = values[j].toDouble();
-            }
-        }
-
-        for (int i = 0; i < OBvec.size(); ++i)
-        {
-            QStringList values = OBvec[i].split(" ");
-            for (int j = 0; j < values.size(); ++j) {
-                nn.m_OutputBiases[i] = values[j].toDouble();
-            }
-        }
-
-        qDebug() << "Weights successful downloaded in:" << filename << endl;
-    }
-
-    else {
-        qDebug() << "Weights  didn't  downloaded in:" << filename << endl;
-    }
 }

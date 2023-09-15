@@ -186,8 +186,7 @@ Window {
 
 
 
-        onClicked: {            
-
+        onClicked: {
             comboboxload.loadData(panel.fieldDataText)
             comboChartFirst.modelData()
             comboChartSecond.modelData()
