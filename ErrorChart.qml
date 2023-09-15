@@ -31,7 +31,7 @@ Item {
 
             max: panel.fieldEpochText
             tickCount: parseInt(max) + 1
-            minorTickCount:neuron.ErrorValue.length
+            minorTickCount: 1600
             minorGridVisible: false
 
 

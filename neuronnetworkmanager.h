@@ -41,6 +41,7 @@ public:
 
 
 
+
     int m_myEpoch;
     int m_NumberHidden;
     int m_NumberOutput;

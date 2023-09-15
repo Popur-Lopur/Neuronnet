@@ -12,14 +12,14 @@ Rectangle {
 
         GradientStop { position: 0.9; color: "#ffffff" }
         GradientStop { position: 0.6; color: "#ebebeb" }
-        //GradientStop { position: 0.2; color: "#2c5364" }
+
 
     }
 
     ScrollView {
         id: scroll
-        contentWidth: text.paintedWidth
-        contentHeight: text.height
+//        contentWidth: text.paintedWidth
+//        contentHeight: text.height
         anchors.right: rectResult.right
         anchors.top: rectResult.top
         anchors.bottom: rectResult.bottom
@@ -34,7 +34,8 @@ Rectangle {
             selectionColor: "#e6e6fa"
             wrapMode: Text.WordWrap
             font.pixelSize: 15
-            anchors.fill: rectResult
+//            anchors.fill: rectResult
+
 
             background: rectResult
 

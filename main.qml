@@ -145,6 +145,8 @@ Window {
         }
         onClicked: {
 
+
+
             neuron.setEpoch(panel.fieldEpochText)
             neuron.setNumberHidden(panel.fieldHiddenText)
             neuron.setNumberOutput(panel.fieldOutputText)
@@ -171,6 +173,7 @@ Window {
             neuron.runTrain()
 
 
+
         }
     }
 
@@ -183,7 +186,8 @@ Window {
 
 
 
-        onClicked: {
+        onClicked: {            
+
             comboboxload.loadData(panel.fieldDataText)
             comboChartFirst.modelData()
             comboChartSecond.modelData()

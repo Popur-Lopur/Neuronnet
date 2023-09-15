@@ -208,7 +208,6 @@ Item {
                     id: fieldDataTrain
                     anchors.fill: parent
                     color: "white"
-                    //text: "C:\\Work\\Qvazi\\test-xxx726.csv"
                     onTextChanged: {
                         fieldDataText = "C:\\Work\\QvaziWindow\\" + text + ".csv"
                     }
@@ -268,9 +267,10 @@ Item {
                     id: fieldEpoch
                     anchors.fill: parent
                     color: "white"
-                    //text: "4"
+
                     onTextChanged: {
                         fieldEpochText = text
+
                     }
                     background: Rectangle {
                         width: lenghtVal
@@ -373,7 +373,6 @@ Item {
                     id: fieldOutput
                     anchors.fill: parent
                     color: "white"
-                    //text: "1"
                     onTextChanged: {
                         fieldOutputText = text
                     }
@@ -408,7 +407,7 @@ Item {
                     anchors.fill: parent
                     color: "white"
                     onTextChanged: {
-                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".json"
+                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".txt"
                     }
                     background: Rectangle {
                         width: lenghtVal

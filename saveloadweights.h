@@ -5,17 +5,13 @@
 #include <QString>
 #include <QList>
 
-class SaveLoadWeights
-{
+class SaveLoadWeights  {
+
 public:
     SaveLoadWeights();
 
     void  SaveDataWeights (QString filename, NeuronNetwork& nn);
     void  LoadDataWeights (QString filename, NeuronNetwork& nn);
-
-
-
-
 
 
 };

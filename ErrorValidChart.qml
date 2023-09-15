@@ -33,17 +33,17 @@ Item {
 
         }
 
-//        ValueAxis {
-//            id: axisXvalid
+        ValueAxis {
+            id: axisXvalid
 
-//            min: 0
+            min: 0
 
-//            max: panel.fieldEpochText
-//            tickCount: parseInt(max) + 1
-//            minorTickCount: neuron.ErrorValueValid.length
-//            minorGridVisible: false
+            max: panel.fieldEpochText
+            tickCount: parseInt(max) + 1
+            minorTickCount: 1600
+            minorGridVisible: false
 
-//        }
+        }
 
         LineSeries {
             id:lineSeriesValid
