@@ -18,8 +18,6 @@ Rectangle {
 
     ScrollView {
         id: scroll
-//        contentWidth: text.paintedWidth
-//        contentHeight: text.height
         anchors.right: rectResult.right
         anchors.top: rectResult.top
         anchors.bottom: rectResult.bottom
@@ -34,11 +32,10 @@ Rectangle {
             selectionColor: "#e6e6fa"
             wrapMode: Text.WordWrap
             font.pixelSize: 15
-//            anchors.fill: rectResult
-
-
-            background: rectResult
-
+            implicitWidth: 110
+            background: Rectangle {
+                visible: false
+            }
         }
     }
 

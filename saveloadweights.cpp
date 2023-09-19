@@ -22,9 +22,9 @@ void SaveLoadWeights::SaveDataWeights(QString filename, NeuronNetwork& nn)
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QJsonObject rootObject;
 
-            rootObject["HiddenSize"] = QJsonValue(nn.m_HiddenSize);
-            rootObject["OutputSize"] = QJsonValue(nn.m_OutputSize);
-            rootObject["LearningRate"] = QJsonValue(nn.m_LearningRate);
+            rootObject["ApplyHiddenSize"] = QJsonValue(nn.m_HiddenSize);
+            rootObject["ApplyOutputSize"] = QJsonValue(nn.m_OutputSize);
+            rootObject["ApplyLearningRate"] = QJsonValue(nn.m_LearningRate);
 
             // Сохранение матрицы весов между входами и скрытым слоем
             QJsonArray inputHiddenWeights;
@@ -73,7 +73,7 @@ void SaveLoadWeights::SaveDataWeights(QString filename, NeuronNetwork& nn)
         }
 }
 
-void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn)
+void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn )
 {
     QFile file(filename);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -84,15 +84,6 @@ void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn)
             QJsonDocument doc = QJsonDocument::fromJson(jsonData);
             if (!doc.isNull()) {
                 QJsonObject rootObject = doc.object();
-
-                if (rootObject.contains("HiddenSize") && rootObject.contains("OutputSize") && rootObject.contains("LearningRate")) {
-                    nn.m_HiddenSize = rootObject["HiddenSize"].toInt();
-                    nn.m_OutputSize = rootObject["OutputSize"].toInt();
-                    nn.m_LearningRate = rootObject["LearningRate"].toDouble();
-
-                }
-
-
 
 
                 // Загрузка матрицы весов между входами и скрытым слоем
@@ -134,6 +125,7 @@ void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn)
                     }
                 }
 
+
                 qDebug() << "Weights successfully loaded from:" << filename << endl;
             }
             else {
@@ -144,3 +136,37 @@ void SaveLoadWeights::LoadDataWeights(QString filename, NeuronNetwork& nn)
             qDebug() << "Weights didn't load from:" << filename << endl;
         }
 }
+
+void SaveLoadWeights::LoadDataStruct(QString filename, int &hid, int &out, double &lr)
+{
+    QFile file(filename);
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QByteArray jsonData = file.readAll();
+        file.close();
+
+        QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+        if (!doc.isNull()) {
+            QJsonObject rootObject = doc.object();
+
+            if (rootObject.contains("ApplyHiddenSize") && rootObject.contains("ApplyOutputSize") && rootObject.contains("ApplyLearningRate")) {
+                hid = rootObject["ApplyHiddenSize"].toInt();
+                out = rootObject["ApplyOutputSize"].toInt();
+                lr = rootObject["ApplyLearningRate"].toDouble();
+
+            }
+
+            qDebug() << "Struct successfully loaded from:" << filename << endl;
+        }
+        else {
+            qDebug() << "Failed to parse JSON data from:" << filename << endl;
+        }
+    }
+    else {
+        qDebug() << "Struct didn't load from:" << filename << endl;
+    }
+}
+
+
+

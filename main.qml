@@ -146,14 +146,14 @@ Window {
         onClicked: {
 
 
-
+            neuron.setWeights(panel.fieldWeightText)
             neuron.setEpoch(panel.fieldEpochText)
             neuron.setNumberHidden(panel.fieldHiddenText)
             neuron.setNumberOutput(panel.fieldOutputText)
             neuron.setLearningRate(panel.fieldLrText)
             neuron.setFilename(panel.fieldDataText)
             neuron.setFilenameValid(panel.fieldDataValidText)
-            neuron.setWeights(panel.fieldWeightText)
+
         }
     }
 
@@ -165,6 +165,7 @@ Window {
         anchors.right: testBtn.left
         anchors.margins: 10
         onClicked: {
+
 
             comboboxload.loadDataTrain(panel.fieldDataText)
             comboChartFirst.modelTrainData()
@@ -187,6 +188,9 @@ Window {
 
 
         onClicked: {
+
+            neuron.setFilename(panel.fieldDataText)
+            neuron.setWeights(panel.fieldWeightText)
             comboboxload.loadData(panel.fieldDataText)
             comboChartFirst.modelData()
             comboChartSecond.modelData()

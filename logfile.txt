@@ -1,2 +1,204 @@
-2023-09-15 17:34:01.670 WRN default: QQuickItem::setParentItem: Parent QQuickTextField(0x254c0380, parent=0x254a2d80, geometry=0,0 16x30) is already part of the subtree of QQuickRectangle(0x123bce70, parent=0x2549dc80, geometry=0,0 200x500)
-2023-09-15 17:34:20.570 FTL default: ASSERT failure in QVector<T>::operator[]: "index out of range", file C:/Qt/Qt5.12.3/5.12.3/mingw73_64/include/QtCore/qvector.h, line 437
+2023-09-19 13:28:19.099 DBG default: Struct successfully loaded from: "C:\\Work\\QvaziWindow\\terry.json" 
+
+2023-09-19 13:28:19.115 DBG default: Weights successfully loaded from: "C:\\Work\\QvaziWindow\\terry.json" 
+
+2023-09-19 13:28:19.117 DBG Debug: Num of line:  1
+2023-09-19 13:28:19.117 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.118 DBG Debug: ID:  "71458(surgut)"
+2023-09-19 13:28:19.118 DBG Debug: Predict: 0.459172
+2023-09-19 13:28:19.118 DBG Debug: ------------------
+2023-09-19 13:28:19.120 DBG Debug: Num of line:  2
+2023-09-19 13:28:19.120 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.120 DBG Debug: ID:  "27(1.5)"
+2023-09-19 13:28:19.120 DBG Debug: Predict: 0.327292
+2023-09-19 13:28:19.120 DBG Debug: ------------------
+2023-09-19 13:28:19.122 DBG Debug: Num of line:  3
+2023-09-19 13:28:19.122 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.122 DBG Debug: ID:  "bad"
+2023-09-19 13:28:19.122 DBG Debug: Predict: 0.80332
+2023-09-19 13:28:19.122 DBG Debug: ------------------
+2023-09-19 13:28:19.125 DBG Debug: Num of line:  4
+2023-09-19 13:28:19.125 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.125 DBG Debug: ID:  "31(3.0 izolenta)"
+2023-09-19 13:28:19.125 DBG Debug: Predict: 0.392202
+2023-09-19 13:28:19.125 DBG Debug: ------------------
+2023-09-19 13:28:19.127 DBG Debug: Num of line:  5
+2023-09-19 13:28:19.127 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.127 DBG Debug: ID:  "bad"
+2023-09-19 13:28:19.127 DBG Debug: Predict: 0.848429
+2023-09-19 13:28:19.127 DBG Debug: ------------------
+2023-09-19 13:28:19.129 DBG Debug: Num of line:  6
+2023-09-19 13:28:19.129 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.129 DBG Debug: ID:  "23(3.5)"
+2023-09-19 13:28:19.129 DBG Debug: Predict: 0.450508
+2023-09-19 13:28:19.129 DBG Debug: ------------------
+2023-09-19 13:28:19.132 DBG Debug: Num of line:  7
+2023-09-19 13:28:19.132 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.132 DBG Debug: ID:  "4714(good)"
+2023-09-19 13:28:19.132 DBG Debug: Predict: 0.375314
+2023-09-19 13:28:19.132 DBG Debug: ------------------
+2023-09-19 13:28:19.134 DBG Debug: Num of line:  8
+2023-09-19 13:28:19.134 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.134 DBG Debug: ID:  "good"
+2023-09-19 13:28:19.134 DBG Debug: Predict: 0.235707
+2023-09-19 13:28:19.134 DBG Debug: ------------------
+2023-09-19 13:28:19.137 DBG Debug: Num of line:  9
+2023-09-19 13:28:19.137 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.137 DBG Debug: ID:  "29(0.5)"
+2023-09-19 13:28:19.137 DBG Debug: Predict: 0.312911
+2023-09-19 13:28:19.137 DBG Debug: ------------------
+2023-09-19 13:28:19.139 DBG Debug: Num of line:  10
+2023-09-19 13:28:19.139 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.139 DBG Debug: ID:  "6068(good)"
+2023-09-19 13:28:19.139 DBG Debug: Predict: 0.539157
+2023-09-19 13:28:19.139 DBG Debug: ------------------
+2023-09-19 13:28:19.142 DBG Debug: Num of line:  11
+2023-09-19 13:28:19.142 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.142 DBG Debug: ID:  "35(2 test P CH)"
+2023-09-19 13:28:19.142 DBG Debug: Predict: 0.412957
+2023-09-19 13:28:19.142 DBG Debug: ------------------
+2023-09-19 13:28:19.144 DBG Debug: Num of line:  12
+2023-09-19 13:28:19.144 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.144 DBG Debug: ID:  "26(2.0)"
+2023-09-19 13:28:19.144 DBG Debug: Predict: 0.354846
+2023-09-19 13:28:19.144 DBG Debug: ------------------
+2023-09-19 13:28:19.146 DBG Debug: Num of line:  13
+2023-09-19 13:28:19.146 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.146 DBG Debug: ID:  "29(0.5)"
+2023-09-19 13:28:19.146 DBG Debug: Predict: 0.260204
+2023-09-19 13:28:19.146 DBG Debug: ------------------
+2023-09-19 13:28:19.149 DBG Debug: Num of line:  14
+2023-09-19 13:28:19.149 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.149 DBG Debug: ID:  "34(2 test P CH)"
+2023-09-19 13:28:19.149 DBG Debug: Predict: 0.469174
+2023-09-19 13:28:19.149 DBG Debug: ------------------
+2023-09-19 13:28:19.151 DBG Debug: Num of line:  15
+2023-09-19 13:28:19.151 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.152 DBG Debug: ID:  "32(3.0 wood)"
+2023-09-19 13:28:19.152 DBG Debug: Predict: 0.773268
+2023-09-19 13:28:19.152 DBG Debug: ------------------
+2023-09-19 13:28:19.154 DBG Debug: Num of line:  16
+2023-09-19 13:28:19.154 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.154 DBG Debug: ID:  "zero"
+2023-09-19 13:28:19.154 DBG Debug: Predict: 0.580105
+2023-09-19 13:28:19.154 DBG Debug: ------------------
+2023-09-19 13:28:19.157 DBG Debug: Num of line:  17
+2023-09-19 13:28:19.157 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.157 DBG Debug: ID:  "33(2 test)"
+2023-09-19 13:28:19.157 DBG Debug: Predict: 0.380522
+2023-09-19 13:28:19.157 DBG Debug: ------------------
+2023-09-19 13:28:19.159 DBG Debug: Num of line:  18
+2023-09-19 13:28:19.159 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.159 DBG Debug: ID:  "4714(bad)"
+2023-09-19 13:28:19.159 DBG Debug: Predict: 0.888303
+2023-09-19 13:28:19.159 DBG Debug: ------------------
+2023-09-19 13:28:19.161 DBG Debug: Num of line:  19
+2023-09-19 13:28:19.161 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.162 DBG Debug: ID:  "33(2 test)"
+2023-09-19 13:28:19.162 DBG Debug: Predict: 0.373722
+2023-09-19 13:28:19.162 DBG Debug: ------------------
+2023-09-19 13:28:19.164 DBG Debug: Num of line:  20
+2023-09-19 13:28:19.164 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.164 DBG Debug: ID:  "4677(good)"
+2023-09-19 13:28:19.164 DBG Debug: Predict: 0.626383
+2023-09-19 13:28:19.164 DBG Debug: ------------------
+2023-09-19 13:28:19.166 DBG Debug: Num of line:  21
+2023-09-19 13:28:19.166 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.166 DBG Debug: ID:  "24(3.0)"
+2023-09-19 13:28:19.166 DBG Debug: Predict: 0.483278
+2023-09-19 13:28:19.166 DBG Debug: ------------------
+2023-09-19 13:28:19.169 DBG Debug: Num of line:  22
+2023-09-19 13:28:19.169 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.169 DBG Debug: ID:  "4677(good)"
+2023-09-19 13:28:19.169 DBG Debug: Predict: 0.87574
+2023-09-19 13:28:19.169 DBG Debug: ------------------
+2023-09-19 13:28:19.172 DBG Debug: Num of line:  23
+2023-09-19 13:28:19.172 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.172 DBG Debug: ID:  "35( 2 test P CH)"
+2023-09-19 13:28:19.172 DBG Debug: Predict: 0.315148
+2023-09-19 13:28:19.172 DBG Debug: ------------------
+2023-09-19 13:28:19.174 DBG Debug: Num of line:  24
+2023-09-19 13:28:19.174 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.174 DBG Debug: ID:  "6068(bad)"
+2023-09-19 13:28:19.174 DBG Debug: Predict: 0.90875
+2023-09-19 13:28:19.174 DBG Debug: ------------------
+2023-09-19 13:28:19.176 DBG Debug: Num of line:  25
+2023-09-19 13:28:19.176 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.176 DBG Debug: ID:  "28(1.0)"
+2023-09-19 13:28:19.176 DBG Debug: Predict: 0.314949
+2023-09-19 13:28:19.176 DBG Debug: ------------------
+2023-09-19 13:28:19.179 DBG Debug: Num of line:  26
+2023-09-19 13:28:19.179 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.179 DBG Debug: ID:  "26(2.0)"
+2023-09-19 13:28:19.179 DBG Debug: Predict: 0.402189
+2023-09-19 13:28:19.179 DBG Debug: ------------------
+2023-09-19 13:28:19.181 DBG Debug: Num of line:  27
+2023-09-19 13:28:19.181 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.181 DBG Debug: ID:  "31(3.0 izolenta)"
+2023-09-19 13:28:19.181 DBG Debug: Predict: 0.394373
+2023-09-19 13:28:19.181 DBG Debug: ------------------
+2023-09-19 13:28:19.184 DBG Debug: Num of line:  28
+2023-09-19 13:28:19.184 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.184 DBG Debug: ID:  "41329(atypical)"
+2023-09-19 13:28:19.184 DBG Debug: Predict: 0.770961
+2023-09-19 13:28:19.184 DBG Debug: ------------------
+2023-09-19 13:28:19.186 DBG Debug: Num of line:  29
+2023-09-19 13:28:19.186 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.186 DBG Debug: ID:  "30(0.0)"
+2023-09-19 13:28:19.186 DBG Debug: Predict: 0.921121
+2023-09-19 13:28:19.186 DBG Debug: ------------------
+2023-09-19 13:28:19.188 DBG Debug: Num of line:  30
+2023-09-19 13:28:19.189 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.189 DBG Debug: ID:  "30(0.0)"
+2023-09-19 13:28:19.189 DBG Debug: Predict: 0.910746
+2023-09-19 13:28:19.189 DBG Debug: ------------------
+2023-09-19 13:28:19.191 DBG Debug: Num of line:  31
+2023-09-19 13:28:19.191 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.191 DBG Debug: ID:  "41329(atypical)"
+2023-09-19 13:28:19.191 DBG Debug: Predict: 0.729497
+2023-09-19 13:28:19.191 DBG Debug: ------------------
+2023-09-19 13:28:19.193 DBG Debug: Num of line:  32
+2023-09-19 13:28:19.193 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.193 DBG Debug: ID:  "27(1.5)"
+2023-09-19 13:28:19.193 DBG Debug: Predict: 0.343801
+2023-09-19 13:28:19.193 DBG Debug: ------------------
+2023-09-19 13:28:19.196 DBG Debug: Num of line:  33
+2023-09-19 13:28:19.196 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.196 DBG Debug: ID:  "28(1.0)"
+2023-09-19 13:28:19.196 DBG Debug: Predict: 0.327119
+2023-09-19 13:28:19.196 DBG Debug: ------------------
+2023-09-19 13:28:19.198 DBG Debug: Num of line:  34
+2023-09-19 13:28:19.198 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.198 DBG Debug: ID:  "24(3.0)"
+2023-09-19 13:28:19.198 DBG Debug: Predict: 0.400069
+2023-09-19 13:28:19.198 DBG Debug: ------------------
+2023-09-19 13:28:19.201 DBG Debug: Num of line:  35
+2023-09-19 13:28:19.201 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.201 DBG Debug: ID:  "71458(surgut)"
+2023-09-19 13:28:19.201 DBG Debug: Predict: 0.34393
+2023-09-19 13:28:19.201 DBG Debug: ------------------
+2023-09-19 13:28:19.203 DBG Debug: Num of line:  36
+2023-09-19 13:28:19.204 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.204 DBG Debug: ID:  "23(3.5)"
+2023-09-19 13:28:19.204 DBG Debug: Predict: 0.397242
+2023-09-19 13:28:19.204 DBG Debug: ------------------
+2023-09-19 13:28:19.206 DBG Debug: Num of line:  37
+2023-09-19 13:28:19.206 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.206 DBG Debug: ID:  "good"
+2023-09-19 13:28:19.206 DBG Debug: Predict: 0.34627
+2023-09-19 13:28:19.206 DBG Debug: ------------------
+2023-09-19 13:28:19.208 DBG Debug: Num of line:  38
+2023-09-19 13:28:19.208 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.208 DBG Debug: ID:  "32(3.0 wood)"
+2023-09-19 13:28:19.208 DBG Debug: Predict: 0.784673
+2023-09-19 13:28:19.208 DBG Debug: ------------------
+2023-09-19 13:28:19.211 DBG Debug: Num of line:  39
+2023-09-19 13:28:19.211 DBG Debug: Name  KP:  "L"
+2023-09-19 13:28:19.211 DBG Debug: ID:  "zero"
+2023-09-19 13:28:19.211 DBG Debug: Predict: 0.900268
+2023-09-19 13:28:19.211 DBG Debug: ------------------
+2023-09-19 13:28:19.213 DBG Debug: Num of line:  40
+2023-09-19 13:28:19.213 DBG Debug: Name  KP:  "R"
+2023-09-19 13:28:19.213 DBG Debug: ID:  "34(2 test P CH)"
+2023-09-19 13:28:19.213 DBG Debug: Predict: 0.363163
+2023-09-19 13:28:19.213 DBG Debug: ------------------

@@ -15,6 +15,7 @@ public:
 
     void  SaveDataWeights (QString filename, NeuronNetwork& nn);
     void  LoadDataWeights (QString filename, NeuronNetwork& nn);
+    void LoadDataStruct (QString filename, int& hid, int& out, double& lr);
 
 
 };

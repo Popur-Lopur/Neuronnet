@@ -136,11 +136,11 @@ void NeuronNetworkManager::trainNetwork()
             qDebug(logDebug()) << "Valid";
             qDebug(logDebug()) << "Epoch: " << epoch  << " #:" << i + 1 ;
             qDebug(logDebug()) << "Target: " << data_valid_csv->m_data_train_list.at(i).target_out_in_csvline[0] ;
-            qDebug(logDebug()) << "Name  KP: " << data_valid_csv->m_data_train_list.at(i).name_kp_in_csvline;
+            qDebug(logDebug()) << "Name KP: " << data_valid_csv->m_data_train_list.at(i).name_kp_in_csvline;
             qDebug(logDebug()) << "ID: " << data_valid_csv->m_data_train_list.at(i).id_in_csvline ;
 
             //Вывод в текстовое окно приложения
-            QString output = QString("Epoch: %1\nTarget: %2\nName  KP: %3\nID: %4\n")
+            QString output = QString("Epoch: %1\nTarget: %2\nName KP: %3\nID: %4\n")
                     .arg(i + 1)
                     .arg(data_valid_csv->m_data_train_list.at(i).target_out_in_csvline[0])
                     .arg(data_valid_csv->m_data_train_list.at(i).name_kp_in_csvline)
@@ -164,7 +164,7 @@ void NeuronNetworkManager::trainNetwork()
 
         }
 
-        qDebug(logDebug()) << "=========== End Validation=============";
+        qDebug(logDebug()) << "===== End Validation =====";
 
         //        *******КОНЕЦ ВАЛИДАЦИИ**********
 
@@ -197,9 +197,17 @@ void NeuronNetworkManager::testNetwork()
     data_test_csv->GetDataFromFile(m_Filename);
 
     int m_NumberInputs = data_test_csv->m_data_list.at(0).values_in_csvline.size();
-    NeuronNetwork Net = NeuronNetwork(m_NumberInputs,m_NumberHidden,m_NumberOutput,m_LearningRate);
 
+    int hid = 0;
+    int out = 0;
+    double lr = 0.0;
     SaveLoadWeights data = SaveLoadWeights();
+    data.LoadDataStruct(m_Weights, hid, out, lr);
+
+
+    NeuronNetwork Net = NeuronNetwork(m_NumberInputs,hid, out, lr);
+
+
         data.LoadDataWeights(m_Weights, Net);
 
     m_MaxValueProgressBar = data_test_csv->m_data_list.size();
@@ -211,13 +219,13 @@ void NeuronNetworkManager::testNetwork()
         Net.MinMax(inputs);
         Net.FeedForward(inputs);
 
-        qDebug(logDebug()) << "Number of line: "  << i + 1 ;
+        qDebug(logDebug()) << "Num of line: "  << i + 1 ;
         qDebug(logDebug()) << "Name  KP: " << data_test_csv->m_data_list.at(i).name_kp_in_csvline;
         qDebug(logDebug()) << "ID: " << data_test_csv->m_data_list.at(i).id_in_csvline ;
 
         //Вывод в текстовое окно приложения
 
-        QString output = QString("Number of line: %1\nName  KP: %2\nID: %3\n")
+        QString output = QString("Num line: %1\nName  KP: %2\nID: %3\n")
                               .arg(i + 1)
                               .arg(data_test_csv->m_data_list.at(i).name_kp_in_csvline)
                               .arg(data_test_csv->m_data_list.at(i).id_in_csvline);
@@ -234,7 +242,11 @@ void NeuronNetworkManager::testNetwork()
 
         setValueProgressBar(i + 1);
 
+
+
     }
+
+    delete data_test_csv;
 
 //    if(data_test_csv != nullptr) delete  data_test_csv;
 //    if(data != nullptr) delete data;
