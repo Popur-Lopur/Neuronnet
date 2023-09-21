@@ -7,7 +7,7 @@ import QtCharts 2.3
 Item {
     id: plots
 
-    width: 450
+    width: 405
     height: 300
 
 
@@ -29,17 +29,37 @@ Item {
         plotData();
     }
 
+    Rectangle {
+
+        id: rectChartPlot
+        anchors.fill: parent
+        radius: 5
+        gradient: Gradient {
+            orientation: Gradient.Vertical
+
+            GradientStop { position: 1.0; color: "#000000" }
+            GradientStop { position: 0.0; color: "#434343" }
+        }
+
+
+    }
+
 
         ChartView {
             id: chart
             anchors.fill: parent
-            //antialiasing: true
+            // Установка цвета фона в прозрачный цвет
+            backgroundColor: "transparent"
+
 
             ValueAxis {
                 id: axisX
                 min: 0
                 max: 25000
                 tickCount: 6
+                color: "gray"
+                labelsColor: "gray"
+                gridLineColor: "gray"
 
 
             }
@@ -47,21 +67,26 @@ Item {
             ValueAxis {
                 id: axisY
                 min: 0
-                max: 160               
+                max: 160
                 tickCount: 9
+                color: "gray"
+                labelsColor: "gray"
+                gridLineColor: "gray"
+
 
 
             }
 
             LineSeries {
                 id: lineSeries
-                name: "Wideband"
+                name: "<font color='#fff5ee'>Wideband</font>"
                 axisX: axisX
                 axisY: axisY
+                color: "#00FFFF"
 
             }
         }
-    }
+}
 
 
 

@@ -6,12 +6,12 @@ import QtCharts 2.3
 Rectangle {
     id: rectResult
     width: 200
-    height: 500
+    height: 335
     radius: 5
     gradient: Gradient {
 
-        GradientStop { position: 0.9; color: "#ffffff" }
-        GradientStop { position: 0.6; color: "#ebebeb" }
+        GradientStop { position: 0.9; color: "#fff5ee" }
+        GradientStop { position: 0.6; color: "#fff5ee" }
 
 
     }

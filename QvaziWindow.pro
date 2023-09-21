@@ -1,6 +1,8 @@
 QT += quick
 QT += charts
 QT += concurrent
+QT += svg
+
 CONFIG += c++11
 
 
@@ -25,7 +27,8 @@ SOURCES += \
         neuronnetworkmanager.cpp \
         saveloadweights.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    pictures.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

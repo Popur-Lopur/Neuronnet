@@ -7,5 +7,7 @@
         <file>ComboBoxChart.qml</file>
         <file>ErrorChart.qml</file>
         <file>ErrorValidChart.qml</file>
+        <file>PanelBtnBar.qml</file>
+        <file>CustomButton.qml</file>
     </qresource>
 </RCC>

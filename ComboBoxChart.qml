@@ -6,7 +6,7 @@ import QtCharts 2.3
 Item {
     id:com
     height: 30
-    width: 450
+    width: 405
 
     signal vectorSelected(var data);
 
@@ -20,48 +20,36 @@ Item {
     }
 
 
-
-
     ComboBox {
         id: combo
-
-
+        anchors.fill: parent
+        textRole: "id"
         font.wordSpacing: -0.1
         background: Rectangle {
             id: rectCombo
             anchors.fill: parent
             radius: 5
+            border.color: "black"
             gradient: Gradient {
                 orientation: Gradient.Horizontal
 
-                GradientStop { position: 0.9; color: "#4b6cb7" }
-                GradientStop { position: 0.6; color: "#182848" }
+                GradientStop { position: 0.0; color: "#434343" }
+                GradientStop { position: 1.0; color: "#434343" }
             }
 
-
-
-
-            border.color: "black"
         }
-
-        anchors.fill: parent
-
-//        model: model2
-
-        textRole: "id"
         onActivated: {
 
-                    var vec =  model[index].vec
-                    com.vectorSelected(vec);
-
+            var vec =  model[index].vec
+            com.vectorSelected(vec);
         }
         contentItem: Label {
-                text: combo.displayText
-                font: combo.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                color: "white"
-            }
+            text: combo.displayText
+            font: combo.font
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            color: "white"
+        }
     }
 }

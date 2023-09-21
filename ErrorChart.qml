@@ -5,7 +5,8 @@ import QtCharts 2.3
 
 Item {
     id: errorplot
-    height: 280
+    height: 335
+    width: 700
 
     function plotData() {
 
@@ -18,10 +19,23 @@ Item {
         }
     }
 
+    Rectangle {
+
+        id: rectErrorPlot
+        anchors.fill: parent
+        radius: 5
+        gradient: Gradient {
+            orientation: Gradient.Vertical
+            GradientStop { position: 1.0; color: "#434343" }
+        }
+
+
+    }
+
     ChartView {
         id: chart
         anchors.fill: parent
-//        antialiasing: true
+        backgroundColor: "transparent"
 
 
         ValueAxis {
@@ -33,6 +47,12 @@ Item {
             tickCount: parseInt(max) + 1
             minorTickCount: 1600
             minorGridVisible: false
+            color: "gray"
+            labelsColor: "gray"
+            gridLineColor: "gray"
+            minorGridLineColor: "transparent"
+
+
 
 
         }
@@ -44,15 +64,22 @@ Item {
             max: 1.0
             tickCount: 11
             minorGridVisible: false
+            color: "gray"
+            labelsColor: "gray"
+            gridLineColor: "gray"
+            minorGridLineColor: "transparent"
+
+
+
 
         }
 
         LineSeries {
             id: lineSeries
-
-            name: "Network Errors"
+            name: "<font color='#fff5ee'>Network Errors</font>"
             axisX: axisX
             axisY: axisY
+            color: "#ffff00"
 
         }
     }

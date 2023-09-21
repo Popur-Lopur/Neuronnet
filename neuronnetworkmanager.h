@@ -29,6 +29,8 @@ class NeuronNetworkManager : public QObject
     Q_PROPERTY(int MaxValueProgressBar READ MaxValueProgressBar NOTIFY MaxValueProgressBarChanged)
     Q_PROPERTY(QVector<double> ErrorValue READ ErrorValue NOTIFY ErrorValueChanged)
     Q_PROPERTY(QVector<double> ErrorValueValid READ ErrorValueValid NOTIFY ErrorValueValidChanged)
+    Q_PROPERTY(int EpochProgressBar READ EpochProgressBar WRITE setEpochProgressBar NOTIFY EpochProgressBarChanged)
+    Q_PROPERTY(int MaxEpochProgressBar READ MaxEpochProgressBar NOTIFY MaxEpochProgressBarChanged)
 
 
 
@@ -51,11 +53,10 @@ public:
     QString m_Weights;
     int m_ValueProgressBar;
     int m_MaxValueProgressBar;
+    int m_MaxEpochProgressBar;
+    int m_EpochProgressBar;
 
 
-    double minError;
-    double totalError;
-    double MseError;
     int m_NumberInputs;
     QVector<double> m_ErrorValue;
     QVector<double> m_ErrorValueValid;
@@ -72,9 +73,18 @@ public:
 
     }
 
+    int EpochProgressBar() const {
+        return m_EpochProgressBar;
+    }
+
+    int MaxEpochProgressBar() const {
+        return m_MaxEpochProgressBar;
+    }
+
     int ValueProgressBar() const {
         return m_ValueProgressBar;
     }
+
 
     int MaxValueProgressBar() const {
         return m_MaxValueProgressBar;
@@ -125,11 +135,21 @@ signals:
     void ValueProgressBarChanged(int ValueProgressBar);
     void MaxValueProgressBarChanged();
     void updateTextField(const QString &data);
+    void MaxEpochProgressBarChanged();
+    void EpochProgressBarChanged(int EpochProgressBar);
 
 
 public slots:
     void trainNetwork();
     void testNetwork();
+
+
+    void setEpochProgressBar(int EpochProgressBar) {
+        if (m_EpochProgressBar != EpochProgressBar) {
+            m_EpochProgressBar = EpochProgressBar;
+            emit EpochProgressBarChanged(EpochProgressBar);
+        }
+    }
 
     void setValueProgressBar(int ValueProgressBar) {
         if (m_ValueProgressBar != ValueProgressBar) {

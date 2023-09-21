@@ -13,58 +13,74 @@ Window {
     id: win
     visible: true
     width: 1360
-    height: 760
+    height: 685
     title: qsTr("Qvazi")
-    color: "#948E99"
+
+
+    Rectangle {
+           id:fon
+           anchors.fill: parent
+           gradient: Gradient {
+               orientation: Gradient.Vertical
+               GradientStop { position: 0.0; color: "#333333" }
+               GradientStop { position: 1.0; color: "#000000" }
+
+//               GradientStop { position: 0.9; color: "#0f2027" }
+//               GradientStop { position: 0.6; color: "#203a43" }
+//               GradientStop { position: 0.2; color: "#2c5364" }
+
+           }
+       }
+
+
 
     ResultText {
         id: resulttext        
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.bottom: errorvalidchart.top
+
         anchors.margins: 5
+
+    }
+
+    Image {
+        source: "images/turtle.svg"
+        width: 230
+        height: 210
+        anchors.bottom: parent.bottom
+        anchors.right: firstPlot.left
+        anchors.margins: 5
+
+
 
     }
 
 
     Charts {
         id: firstPlot
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 10
-        anchors.topMargin: 40
-
-    }
-
-    Charts {
-        id: secondPlot
-        anchors.left: firstPlot.right
-        anchors.top: parent.top
-        anchors.margins: 10
-        anchors.topMargin: 40
+        anchors.right: parent.right
+        anchors.top: comboChartFirst.bottom
+        anchors.margins: 5
 
 
     }
+
 
     ErrorChart {
         id: errorchart
-        width: parent.width/2
         anchors.left: parent.left
-        anchors.bottom: parent.bottom
+        anchors.top: parent.top
         anchors.margins: 5
-        //anchors.bottomMargin: 5
 
 
     }
 
     ErrorValidChart {
         id: errorvalidchart
-        width: parent.width/2
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.margins: 5
-        //anchors.bottomMargin: 5
 
+        anchors.left: parent.left
+        anchors.top: errorchart.bottom
+        anchors.margins: 5
 
     }
 
@@ -72,132 +88,26 @@ Window {
         id: panel
         anchors.top: parent.top
         anchors.right: resulttext.left
-        anchors.margins: 10
+        anchors.margins: 5
 
+    }
+
+    PanelBtnBar {
+        id: panelBtnBar
+        anchors.top: control.bottom
+        anchors.right: resulttext.left
+        anchors.margins: 5
     }
 
 
 
     ComboBoxChart {
         id: comboChartFirst
-        anchors.right: firstPlot.right
-        anchors.bottom: firstPlot.top
-        anchors.bottomMargin: 1
-
+        anchors.top: resulttext.bottom
+        anchors.right: parent.right
+        anchors.margins: 5
     }
 
-    ComboBoxChart {
-        id: comboChartSecond
-        anchors.right: secondPlot.right
-        anchors.bottom: secondPlot.top
-        anchors.bottomMargin: 1
-
-    }
-
-    Button {
-        id: btnStop
-        anchors.top: panel.bottom
-        anchors.right: resulttext.left
-        anchors.margins: 10
-
-        Text {
-            id: btnStopText
-            text: "PUSH 1"
-            anchors.centerIn: parent
-            color: "black"
-        }
-        onClicked: {            
-            errorchart.plotData();
-       }
-    }
-
-    Button {
-        id: btnPush
-        anchors.top: control.bottom
-        anchors.right: resulttext.left
-        anchors.margins: 10
-
-        Text {
-            id: btnPushText
-            text: "PUSH 2"
-            anchors.centerIn: parent
-            color: "black"
-        }
-        onClicked: {
-
-            errorvalidchart.plotValidData();
-
-       }
-    }
-
-    Button {
-        id: btnSave
-        anchors.top: panel.bottom
-        anchors.right: btnStop.left
-        anchors.margins: 10
-
-
-        Text {
-            id: btnSaveText
-            text: "SAVE"
-            anchors.centerIn: parent
-            color: "black"
-        }
-        onClicked: {
-
-
-            neuron.setWeights(panel.fieldWeightText)
-            neuron.setEpoch(panel.fieldEpochText)
-            neuron.setNumberHidden(panel.fieldHiddenText)
-            neuron.setNumberOutput(panel.fieldOutputText)
-            neuron.setLearningRate(panel.fieldLrText)
-            neuron.setFilename(panel.fieldDataText)
-            neuron.setFilenameValid(panel.fieldDataValidText)
-
-        }
-    }
-
-    Button {
-        id: trainBtn
-        text: "TRAIN"
-
-        anchors.top: btnSave.bottom
-        anchors.right: testBtn.left
-        anchors.margins: 10
-        onClicked: {
-
-
-            comboboxload.loadDataTrain(panel.fieldDataText)
-            comboChartFirst.modelTrainData()
-            comboChartSecond.modelTrainData()
-
-            neuron.runTrain()
-
-
-
-        }
-    }
-
-    Button {
-        id: testBtn
-        text: "TEST"
-            anchors.top: btnStop.bottom
-            anchors.right: resulttext.left
-            anchors.margins: 10
-
-
-
-        onClicked: {
-
-            neuron.setFilename(panel.fieldDataText)
-            neuron.setWeights(panel.fieldWeightText)
-            comboboxload.loadData(panel.fieldDataText)
-            comboChartFirst.modelData()
-            comboChartSecond.modelData()
-            neuron.runTest()
-
-        }
-    }
 
     ProgressBar {
         id: control
@@ -205,17 +115,24 @@ Window {
         from: 0
         to: neuron.MaxValueProgressBar
         padding: 1
-        anchors.top: trainBtn.bottom
-        anchors.right: testBtn.right
-        anchors.topMargin: 5
-
-
-
+        anchors.top: panel.bottom
+        anchors.right: resulttext.left
+        anchors.margins: 5
         background: Rectangle {
+            id: rectBar
             implicitWidth: 200
             implicitHeight: 6
-            color: "#e6e6e6"
             radius: 3
+            color: "#fff5ee"
+
+        }
+
+        Text {
+            id: progressText
+            anchors.centerIn: parent
+            color: "black"
+            text: neuron.EpochProgressBar + "/" + neuron.MaxEpochProgressBar
+
         }
 
         contentItem: Item {
@@ -236,8 +153,6 @@ Window {
 
                         GradientStop { position: 0.0; color: "#a8e063" }
                         GradientStop { position: 0.9; color: "#56ab2f" }
-
-
                     }
                 }
             }
@@ -248,12 +163,6 @@ Window {
         target: comboChartFirst
         onVectorSelected: {
             firstPlot.vectorReceived(data);
-        }
-    }
-    Connections {
-        target: comboChartSecond
-        onVectorSelected: {
-            secondPlot.vectorReceived(data);
         }
     }
 }

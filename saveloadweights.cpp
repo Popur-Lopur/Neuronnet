@@ -22,6 +22,7 @@ void SaveLoadWeights::SaveDataWeights(QString filename, NeuronNetwork& nn)
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QJsonObject rootObject;
 
+//            rootObject["ApplyHiddenSize"] = QJsonValue(nn.m_myEpoch);
             rootObject["ApplyHiddenSize"] = QJsonValue(nn.m_HiddenSize);
             rootObject["ApplyOutputSize"] = QJsonValue(nn.m_OutputSize);
             rootObject["ApplyLearningRate"] = QJsonValue(nn.m_LearningRate);

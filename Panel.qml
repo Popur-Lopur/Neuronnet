@@ -3,11 +3,12 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
 import QtCharts 2.3
 import QtQuick.Layouts 1.2
+import QtGraphicalEffects 1.12
 import NeuronNetworkManager 1.0
 
 
 Item {
-    id: p22
+    id: pn1
 
     width: 200
     height: 230
@@ -29,15 +30,13 @@ Item {
         id: rectCol
         anchors.fill: parent
         radius: 5
-        gradient: Gradient {
-            orientation: Gradient.Horizontal
+        color: "transparent"
+//        gradient: Gradient {
+//            orientation: Gradient.Vertical
+//            GradientStop { position: 0.0; color: "#333333" }
+//            GradientStop { position: 1.0; color: "#434343" }
 
-//            GradientStop { position: 0.9; color: "#4b6cb7" }
-//            GradientStop { position: 0.6; color: "#182848" }
-            GradientStop { position: 0.5; color: "#7474BF" }
-            GradientStop { position: 0.0; color: "#348AC7" }
-        }
-        border.color: "white"
+//        }
 
         ColumnLayout {
             id: colText
@@ -51,12 +50,13 @@ Item {
                 width: lenght
                 height: row
                 border.color: "black"
+
                 radius: 5
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -77,8 +77,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -97,8 +97,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -117,8 +117,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -137,8 +137,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -157,8 +157,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -177,8 +177,8 @@ Item {
                 gradient: Gradient {
                     orientation: Gradient.Vertical
 
-                    GradientStop { position: 0.9; color: "#4b6cb7" }
-                    GradientStop { position: 0.6; color: "#182848" }
+                    GradientStop { position: 0.9; color: "#434343" }
+                    GradientStop { position: 0.6; color: "#434343" }
                 }
 
                 Text {
@@ -218,8 +218,8 @@ Item {
                         radius: 5
                         gradient: Gradient {
                             orientation: Gradient.Vertical
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
                         }
                     }
                 }
@@ -249,8 +249,8 @@ Item {
                         radius: 5
                         gradient: Gradient {
                             orientation: Gradient.Vertical
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
                         }
                     }
                 }
@@ -280,8 +280,8 @@ Item {
                         gradient: Gradient {
                             orientation: Gradient.Vertical
 
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
 
                         }
 
@@ -315,8 +315,8 @@ Item {
                         gradient: Gradient {
                             orientation: Gradient.Vertical
 
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
 
                         }
 
@@ -350,8 +350,8 @@ Item {
                         gradient: Gradient {
                             orientation: Gradient.Vertical
 
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
 
                         }
 
@@ -384,8 +384,8 @@ Item {
                         gradient: Gradient {
                             orientation: Gradient.Vertical
 
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
                         }
 
 
@@ -414,17 +414,14 @@ Item {
                         height: row
                         border.color: "black"
                         radius: 5
+
                         gradient: Gradient {
                             orientation: Gradient.Vertical
 
-                            GradientStop { position: 0.9; color: "#4b6cb7" }
-                            GradientStop { position: 0.6; color: "#182848" }
+                            GradientStop { position: 0.9; color: "#434343" }
+                            GradientStop { position: 0.6; color: "#434343" }
                         }
-
-
                     }
-
-
                 }
             }
         }

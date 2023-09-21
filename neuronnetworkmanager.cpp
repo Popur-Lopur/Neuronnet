@@ -47,19 +47,26 @@ void NeuronNetworkManager::trainNetwork()
     GetDataFromCsv* data_train_csv = new GetDataFromCsv();
     data_train_csv->GetTrainDataFromFile(m_Filename);
 
+    GetDataFromCsv* data_valid_csv = new GetDataFromCsv();
+    data_valid_csv->GetTrainDataFromFile(m_FilenameValid);
+
     m_NumberInputs = data_train_csv->m_data_train_list.at(0).values_in_csvline.size();
+
     m_MaxValueProgressBar = data_train_csv->m_data_train_list.size();
     emit MaxValueProgressBarChanged();
 
+    m_MaxEpochProgressBar = m_myEpoch;
+    emit MaxEpochProgressBarChanged();
 
 
     NeuronNetwork Net =  NeuronNetwork(m_NumberInputs,m_NumberHidden,m_NumberOutput,m_LearningRate);
 
 
-    double MseError = 0.0;
-
 
     for (int epoch = 0; epoch < m_myEpoch; ++epoch) {
+
+        double MsaError = 0.0;
+        double MsaValidError = 0.0;
 
         for (int i = 0; i < data_train_csv->m_data_train_list.size(); ++i) {
 
@@ -74,7 +81,7 @@ void NeuronNetworkManager::trainNetwork()
 
 
 
-            qDebug(logDebug()) << "Epoch: " << epoch  << " #:" << i + 1 ;
+            qDebug(logDebug()) << "Epoch: " << epoch + 1  << " #:" << i + 1 ;
             qDebug(logDebug()) << "Target: " << data_train_csv->m_data_train_list.at(i).target_out_in_csvline[0] ;
             qDebug(logDebug()) << "Name  KP: " << data_train_csv->m_data_train_list.at(i).name_kp_in_csvline;
             qDebug(logDebug()) << "ID: " << data_train_csv->m_data_train_list.at(i).id_in_csvline ;
@@ -91,13 +98,13 @@ void NeuronNetworkManager::trainNetwork()
 
             //Вывод в текстовое окно приложения
                 output += QString("Predict: %1\n").arg(Net.m_OutputNeuronsValues[j]);
-                totalError = qAbs(Net.m_OutputErrorValues[j]);
+
                 m_ErrorValue.push_back(qAbs(Net.m_OutputErrorValues[j]));
 
 
 
 
-                MseError += qAbs(Net.m_OutputErrorValues[j]) * qAbs(Net.m_OutputErrorValues[j]);
+                MsaError += qAbs(Net.m_OutputErrorValues[j]);
 
             }
 
@@ -107,19 +114,20 @@ void NeuronNetworkManager::trainNetwork()
             emit ErrorValueChanged();
             setValueProgressBar(i + 1);
         }
+        //Подсчет средней ошибки для эпохи
+
+         MsaError =  MsaError /  data_train_csv->m_data_train_list.size();
+        qDebug(logDebug()) << "MSE ERROR: " <<  MsaError;
+        qDebug(logDebug()) << endl;
+
+        QString output = QString("MSE ERROR: %1\n").arg( MsaError);
+
+
 
 
 
         //        *******ВАЛИДАЦИОННАЯ ВЫБОРКА**************
 
-        GetDataFromCsv* data_valid_csv = new GetDataFromCsv();
-        data_valid_csv->GetTrainDataFromFile(m_FilenameValid);
-
-        m_NumberInputs = data_valid_csv->m_data_train_list.at(0).values_in_csvline.size();
-
-
-
-        NeuronNetwork Net =  NeuronNetwork(m_NumberInputs,m_NumberHidden,m_NumberOutput,m_LearningRate);
         qDebug(logDebug()) << "===========Validation=============";
         for (int i = 0; i < data_valid_csv->m_data_train_list.size(); ++i) {
 
@@ -134,7 +142,7 @@ void NeuronNetworkManager::trainNetwork()
 
 
             qDebug(logDebug()) << "Valid";
-            qDebug(logDebug()) << "Epoch: " << epoch  << " #:" << i + 1 ;
+            qDebug(logDebug()) << "Epoch: " << epoch + 1  << " #:" << i + 1 ;
             qDebug(logDebug()) << "Target: " << data_valid_csv->m_data_train_list.at(i).target_out_in_csvline[0] ;
             qDebug(logDebug()) << "Name KP: " << data_valid_csv->m_data_train_list.at(i).name_kp_in_csvline;
             qDebug(logDebug()) << "ID: " << data_valid_csv->m_data_train_list.at(i).id_in_csvline ;
@@ -155,31 +163,31 @@ void NeuronNetworkManager::trainNetwork()
 
                 m_ErrorValueValid.push_back(qAbs(Net.m_OutputErrorValues[j]));
 
+                MsaValidError += qAbs(Net.m_OutputErrorValues[j]);
 
 
             }
             qDebug(logDebug()) << "------------------";
 
-            output += "------------------\n";
-
+            output += "------------------\n";            
         }
+
+        MsaValidError = MsaValidError /  data_train_csv->m_data_train_list.size();
+        qDebug(logDebug()) << "MSE ERROR: " << MsaValidError;
+        qDebug(logDebug()) << endl;
+
+        output = QString("MSE ERROR: %1\n").arg(MsaValidError);
 
         qDebug(logDebug()) << "===== End Validation =====";
 
         //        *******КОНЕЦ ВАЛИДАЦИИ**********
 
-        delete  data_valid_csv;
+        setEpochProgressBar(epoch + 1);
 
     }
-
-
-    MseError = MseError / (m_myEpoch * data_train_csv->m_data_train_list.size());
-    qDebug(logDebug()) << "MSE ERROR: " << MseError;
-    qDebug(logDebug()) << endl;
-
-    QString output = QString("MSE ERROR: %1\n").arg(MseError);
-    output = QString("Train completed open (logfile)");
+    QString output = QString("Train completed open (logfile)");
     emit updateTextField(output);
+    delete  data_valid_csv;
 
     SaveLoadWeights data = SaveLoadWeights();
     data.SaveDataWeights(m_Weights, Net);
@@ -213,6 +221,10 @@ void NeuronNetworkManager::testNetwork()
     m_MaxValueProgressBar = data_test_csv->m_data_list.size();
     emit MaxValueProgressBarChanged();
 
+    m_MaxEpochProgressBar = data_test_csv->m_data_list.size();
+    emit MaxEpochProgressBarChanged();
+
+
     for (int i = 0; i < data_test_csv->m_data_list.size(); ++i) {
 
         QVector<double> inputs =  data_test_csv->m_data_list.at(i).values_in_csvline;
@@ -241,6 +253,7 @@ void NeuronNetworkManager::testNetwork()
         emit updateTextField(output);
 
         setValueProgressBar(i + 1);
+        setEpochProgressBar(i + 1);
 
 
 
