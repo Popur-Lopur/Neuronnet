@@ -16,11 +16,6 @@ Item {
         anchors.fill: parent
         color: "transparent"
         radius: 5
-//        gradient: Gradient {
-//            orientation: Gradient.Vertical
-//            GradientStop { position: 0.0; color: "#333333" }
-//            GradientStop { position: 1.0; color: "#434343" }
-//        }
 
 
         CustomButton {
@@ -71,7 +66,7 @@ Item {
             anchors.left: parent.left
             anchors.margins: 5
             onClicked: {
-                errorchart.plotData();
+                errorchart.plotErrorData();
             }
         }
 

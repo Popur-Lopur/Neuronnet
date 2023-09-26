@@ -31,12 +31,7 @@ Item {
         anchors.fill: parent
         radius: 5
         color: "transparent"
-//        gradient: Gradient {
-//            orientation: Gradient.Vertical
-//            GradientStop { position: 0.0; color: "#333333" }
-//            GradientStop { position: 1.0; color: "#434343" }
 
-//        }
 
         ColumnLayout {
             id: colText
