@@ -2,7 +2,7 @@
 #include <cmath>
 
 
-NeuronNetwork::NeuronNetwork(int InputNum, int HiddenNum, int OutputNum, double LearningRate)
+NeuronNetwork::NeuronNetwork(int InputNum, int HiddenNum, int OutputNum, double LearningRate, double Gp, double Cgp, double Cbp, double Bp)
 {
     m_InputSize = InputNum;
     m_HiddenSize = HiddenNum;
@@ -18,6 +18,12 @@ NeuronNetwork::NeuronNetwork(int InputNum, int HiddenNum, int OutputNum, double 
     m_HiddenErrorValues.resize(HiddenNum);
     m_GradientErrorOutput.resize(OutputNum);
     m_GradientErrorHidden.resize(HiddenNum);
+
+    m_Gp = Gp;
+    m_Cgp = Cgp;
+    m_Cbp = Cbp;
+    m_Bp = Bp;
+    m_PredictForBuksa.resize(OutputNum);
 
     std::srand(std::time(nullptr));
 
@@ -204,6 +210,29 @@ void NeuronNetwork::Validation(const QVector<double> &_target)
         m_OutputErrorValues[i] =   m_TargetValue[i] - m_OutputNeuronsValues[i];
 
     }
+}
+
+void NeuronNetwork::ResultPredict(const QVector<double> &_predict)
+{
+    m_OutputNeuronsValues = _predict;
+    for (int i = 0; i < m_OutputNeuronsValues.size(); i++) {
+        if(m_OutputNeuronsValues[i] <= m_Gp) {
+            m_PredictForBuksa[i] = 1;
+        }
+        else if (m_Gp < m_OutputNeuronsValues[i] && m_OutputNeuronsValues[i] < m_Cgp) {
+            m_PredictForBuksa[i] = 2;
+        }
+        else if (m_Cgp <= m_OutputNeuronsValues[i] && m_OutputNeuronsValues[i] <= m_Cbp) {
+            m_PredictForBuksa[i] = 3;
+        }
+        else if (m_Cbp < m_OutputNeuronsValues[i] && m_OutputNeuronsValues[i] < m_Bp) {
+            m_PredictForBuksa[i] = 4;
+        }
+        else if (m_OutputNeuronsValues[i] >= m_Bp) {
+            m_PredictForBuksa[i] = 5;
+        }
+    }
+
 }
 
 

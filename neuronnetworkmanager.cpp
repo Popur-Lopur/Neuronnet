@@ -59,7 +59,7 @@ void NeuronNetworkManager::trainNetwork()
     emit MaxEpochProgressBarChanged();
 
 
-    NeuronNetwork Net =  NeuronNetwork(m_NumberInputs,m_NumberHidden,m_NumberOutput,m_LearningRate);
+    NeuronNetwork Net =  NeuronNetwork(m_NumberInputs,m_NumberHidden,m_NumberOutput,m_LearningRate, m_Gp, m_Cgp, m_Cbp, m_Bp);
 
 
 
@@ -78,6 +78,8 @@ void NeuronNetworkManager::trainNetwork()
             Net.FeedForward(inputs);
             //Обратное распространение
             Net.Backpropagation(target);
+            QVector<double> predict = Net.m_OutputNeuronsValues;
+            Net.ResultPredict(predict);
 
 
 
@@ -98,6 +100,9 @@ void NeuronNetworkManager::trainNetwork()
 
             //Вывод в текстовое окно приложения
                 output += QString("Predict: %1\n").arg(Net.m_OutputNeuronsValues[j]);
+
+                qDebug(logDebug()) << "Result:" << Net.m_PredictForBuksa[j];
+                output += QString("Result: %1\n").arg(Net.m_PredictForBuksa[j]);
 
                 m_ErrorValue.push_back(qAbs(Net.m_OutputErrorValues[j]));
 
@@ -139,6 +144,8 @@ void NeuronNetworkManager::trainNetwork()
             Net.FeedForward(inputs);
             //Обратное распространение
             Net.Validation(target);
+            QVector<double> predict = Net.m_OutputNeuronsValues;
+            Net.ResultPredict(predict);
 
 
             qDebug(logDebug()) << "Valid";
@@ -160,6 +167,9 @@ void NeuronNetworkManager::trainNetwork()
 
                 //Вывод в текстовое окно приложения
                 output += QString("Predict: %1\n").arg(Net.m_OutputNeuronsValues[j]);
+
+                qDebug(logDebug()) << "Result:" << Net.m_PredictForBuksa[j];
+                output += QString("Result: %1\n").arg(Net.m_PredictForBuksa[j]);
 
                 m_ErrorValueValid.push_back(qAbs(Net.m_OutputErrorValues[j]));
 
@@ -190,6 +200,7 @@ void NeuronNetworkManager::trainNetwork()
     delete  data_valid_csv;
 
     SaveLoadWeights data = SaveLoadWeights();
+    data.SaveResultConfig(m_Config, Net);
     data.SaveDataWeights(m_Weights, Net);
 
     delete  data_train_csv;
@@ -204,19 +215,24 @@ void NeuronNetworkManager::testNetwork()
     GetDataFromCsv* data_test_csv = new GetDataFromCsv();
     data_test_csv->GetDataFromFile(m_Filename);
 
-    int m_NumberInputs = data_test_csv->m_data_list.at(0).values_in_csvline.size();
-
+//    int m_NumberInputs = data_test_csv->m_data_list.at(0).values_in_csvline.size();
+    int inp = 0;
     int hid = 0;
     int out = 0;
     double lr = 0.0;
+    double gp = 0.0;
+    double cgp = 0.0;
+    double cbp = 0.0;
+    double bp = 0.0;
     SaveLoadWeights data = SaveLoadWeights();
-    data.LoadDataStruct(m_Weights, hid, out, lr);
+    data.LoadDataStruct(m_Weights,inp, hid, out, lr);
 
 
-    NeuronNetwork Net = NeuronNetwork(m_NumberInputs,hid, out, lr);
+    NeuronNetwork Net = NeuronNetwork(inp ,hid, out, lr, gp, cgp, cbp, bp);
 
 
         data.LoadDataWeights(m_Weights, Net);
+        data.LoadResultConfig(m_Config, Net);
 
     m_MaxValueProgressBar = data_test_csv->m_data_list.size();
     emit MaxValueProgressBarChanged();
@@ -230,6 +246,8 @@ void NeuronNetworkManager::testNetwork()
         QVector<double> inputs =  data_test_csv->m_data_list.at(i).values_in_csvline;
         Net.MinMax(inputs);
         Net.FeedForward(inputs);
+        QVector<double> predict = Net.m_OutputNeuronsValues;
+        Net.ResultPredict(predict);
 
         qDebug(logDebug()) << "Num of line: "  << i + 1 ;
         qDebug(logDebug()) << "Name  KP: " << data_test_csv->m_data_list.at(i).name_kp_in_csvline;
@@ -246,6 +264,8 @@ void NeuronNetworkManager::testNetwork()
         for (int j = 0; j < Net.m_OutputSize; ++j) {
         qDebug(logDebug()) << "Predict:" << Net.m_OutputNeuronsValues[j];
         output += QString("Predict: %1\n").arg(Net.m_OutputNeuronsValues[j]);
+        qDebug(logDebug()) << "Result:" << Net.m_PredictForBuksa[j];
+        output += QString("Result: %1\n").arg(Net.m_PredictForBuksa[j]);
 
         }
         qDebug(logDebug()) << "------------------";

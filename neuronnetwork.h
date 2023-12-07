@@ -18,7 +18,7 @@ class NeuronNetwork
 
 public:
 
-    NeuronNetwork(int InputNum, int HiddenNum, int OutputNum, double LearningRate);
+    NeuronNetwork(int InputNum, int HiddenNum, int OutputNum, double LearningRate, double Gp, double Cgp, double Cbp, double Bp);
 
 
 //private:
@@ -28,6 +28,26 @@ public:
     int m_OutputSize;   //количество выходных нейронов
 
     double m_LearningRate; //коэф. обучения определяеться эксперементально
+
+    //порог предсказания для хорошего спектра (good predict)
+    double m_Gp;
+    //порог предсказания для почти хорошего спектра (close good predict)
+    double m_Cgp;
+    //порог предсказания для почти плохого спектра (close bad predict)
+    double m_Cbp;
+    //порог предсказания для плохого спектра (bad predict)
+    double m_Bp;
+
+
+    //значения предсказаний по буксам
+    //  -1 - значение по умолчанию
+    //   1 - спектр хороший
+    //   2 - спектр почти хороший
+    //   3 - сеть не определилась
+    //   4 - спектр почти плохой
+    //   5 - спектр плохой
+    QVector<int> m_PredictForBuksa;
+
 
     QVector<double> m_InputNeuronsValues;   //значения входных нейронов
     QVector<double> m_HiddenNeuronsValues;  //значения скрытых нейронов
@@ -64,6 +84,7 @@ public:
     void FeedForward( const QVector<double>& _input); //функция прямого распространения
     void Backpropagation(const QVector<double>& _target ); //Обратное распространение ошибки
     void Validation(const QVector<double>& _target);
+    void ResultPredict(const QVector<double>& _predict);
 
 };
 

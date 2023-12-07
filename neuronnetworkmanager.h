@@ -31,7 +31,10 @@ class NeuronNetworkManager : public QObject
     Q_PROPERTY(QVector<double> ErrorValueValid READ ErrorValueValid NOTIFY ErrorValueValidChanged)
     Q_PROPERTY(int EpochProgressBar READ EpochProgressBar WRITE setEpochProgressBar NOTIFY EpochProgressBarChanged)
     Q_PROPERTY(int MaxEpochProgressBar READ MaxEpochProgressBar NOTIFY MaxEpochProgressBarChanged)
-
+    Q_PROPERTY(double Gp READ Gp WRITE setGp NOTIFY GpChanged)
+    Q_PROPERTY(double Cgp READ Cgp WRITE setCgp NOTIFY CgpChanged)
+    Q_PROPERTY(double Cbp READ Cbp WRITE setCbp NOTIFY CbpChanged)
+    Q_PROPERTY(double Bp READ Bp WRITE setBp NOTIFY BpChanged)
 
 
 
@@ -41,16 +44,18 @@ public:
      Q_INVOKABLE void runTrain();
 
 
-
-
-
     int m_myEpoch;
     int m_NumberHidden;
     int m_NumberOutput;
     double m_LearningRate;
+    double m_Gp;
+    double m_Cgp;
+    double m_Cbp;
+    double m_Bp;
     QString m_Filename;
     QString m_FilenameValid;
     QString m_Weights;
+    QString m_Config = "C:\\Work\\QvaziWindow\\resultCfg";
     int m_ValueProgressBar;
     int m_MaxValueProgressBar;
     int m_MaxEpochProgressBar;
@@ -122,6 +127,22 @@ public:
         return m_Weights;
     }
 
+    double Gp() const {
+        return m_Gp;
+    }
+
+    double Cgp() const {
+        return m_Cgp;
+    }
+
+    double Cbp() const {
+        return m_Cbp;
+    }
+
+    double Bp() const {
+        return m_Bp;
+    }
+
 signals:
     void ErrorValueValidChanged();
     void ErrorValueChanged();
@@ -137,6 +158,10 @@ signals:
     void updateTextField(const QString &data);
     void MaxEpochProgressBarChanged();
     void EpochProgressBarChanged(int EpochProgressBar);
+    void GpChanged();
+    void CgpChanged();
+    void CbpChanged();
+    void BpChanged();
 
 
 public slots:
@@ -185,7 +210,6 @@ public slots:
     }
 
 
-
     void setFilenameValid(const QString& valueFile) {
         m_FilenameValid = valueFile;
         emit FilenameValidChanged();
@@ -194,6 +218,28 @@ public slots:
     void setWeights(const QString& valueWeight) {
         m_Weights = valueWeight;
         emit WeightsChanged();
+    }
+
+    void setGp(const double& valueGp) {
+        m_Gp = valueGp;
+        emit GpChanged();
+    }
+
+    void setCgp(const double& valueCgp) {
+        m_Cgp = valueCgp;
+        emit CgpChanged();
+    }
+
+
+    void setCbp(const double& valueCbp) {
+        m_Cbp = valueCbp;
+        emit CbpChanged();
+    }
+
+
+    void setBp(const double& valueBp) {
+        m_Bp = valueBp;
+        emit BpChanged();
     }
 
 };

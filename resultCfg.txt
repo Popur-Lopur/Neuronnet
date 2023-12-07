@@ -1,0 +1,4 @@
+Good: 0.32
+CloseGood: 0.44
+CloseBad: 0.56
+Bad: 0.71

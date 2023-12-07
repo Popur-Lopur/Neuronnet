@@ -9,5 +9,6 @@
         <file>ErrorValidChart.qml</file>
         <file>PanelBtnBar.qml</file>
         <file>CustomButton.qml</file>
+        <file>ConfigPanel.qml</file>
     </qresource>
 </RCC>

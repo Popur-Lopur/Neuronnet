@@ -45,7 +45,6 @@ Item {
                 width: lenght
                 height: row
                 border.color: "black"
-
                 radius: 5
                 gradient: Gradient {
                     orientation: Gradient.Vertical
@@ -298,7 +297,6 @@ Item {
                     id: fieldLr
                     anchors.fill: parent
                     color: "white"
-                    //text: "0.003"
                     onTextChanged: {
                         fieldLrText = text
                     }
@@ -333,7 +331,6 @@ Item {
                     id: fieldHidden
                     anchors.fill: parent
                     color: "white"
-                    //text: "400"
                     onTextChanged: {
                         fieldHiddenText = text
                     }
@@ -402,7 +399,7 @@ Item {
                     anchors.fill: parent
                     color: "white"
                     onTextChanged: {
-                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".json"
+                        fieldWeightText = "C:\\Work\\QvaziWindow\\" + text + ".txt"
                     }
                     background: Rectangle {
                         width: lenghtVal

@@ -45,17 +45,19 @@ void GetDataFromCsv::GetTrainDataFromFile(QString filename_train)
             //Нужно сделать настройку структуры тренировки
             QString line = stream.readLine();
             QStringList values = line.split(",");
-            double targetGood = values[0].toDouble();
-            double targetBad = values[1].toDouble();
+            double target = values[0].toDouble();
+//            double targetGood = values[0].toDouble();
+//            double targetBad = values[1].toDouble();
             QVector<double> target_out;
-            target_out.push_back(targetGood);
-            target_out.push_back(targetBad);
-            QString name_of_kp = values[2];
-            QString id = values[3];
+            target_out.push_back(target);
+//            target_out.push_back(targetGood);
+//            target_out.push_back(targetBad);
+            QString name_of_kp = values[1];
+            QString id = values[2];
 
             QVector<double> vec;
 
-            for (int i = 4; i < values.size(); ++i)
+            for (int i = 3; i < values.size(); ++i)
             {
                 double value = values[i].toDouble();
                 vec.push_back(value);

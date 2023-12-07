@@ -42,7 +42,10 @@ Item {
             anchors.right: parent.right
             anchors.margins: 5
             onClicked: {
-
+                neuron.setGp(configPanel.fieldGpText)
+                neuron.setCgp(configPanel.fieldCgpText)
+                neuron.setCbp(configPanel.fieldCbpText)
+                neuron.setBp(configPanel.fieldBpText)
                 neuron.setWeights(panel.fieldWeightText)
                 neuron.setEpoch(panel.fieldEpochText)
                 neuron.setNumberHidden(panel.fieldHiddenText)

@@ -29,7 +29,6 @@ Item {
             id: rectCombo
             anchors.fill: parent
             radius: 5
-            border.color: "black"
             gradient: Gradient {
                 orientation: Gradient.Horizontal
 
@@ -50,6 +49,6 @@ Item {
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
             color: "white"
-        }
+        }        
     }
 }

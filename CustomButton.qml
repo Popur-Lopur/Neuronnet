@@ -10,7 +10,7 @@ Button {
     height: 30
     background: Rectangle {
         radius: 5
-        border.color: "black"
+//        border.color: "black"
         gradient: Gradient {
             orientation: Gradient.Vertical
             GradientStop { position: 0.9; color: myBtn.pressed ? "#434343" : "#000000" }

@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
+
 class SaveLoadWeights  {
 
 public:
@@ -15,7 +16,9 @@ public:
 
     void  SaveDataWeights (QString filename, NeuronNetwork& nn);
     void  LoadDataWeights (QString filename, NeuronNetwork& nn);
-    void LoadDataStruct (QString filename, int& hid, int& out, double& lr);
+    void LoadDataStruct (QString filename,int& inp, int& hid, int& out, double& lr);
+    void SaveResultConfig(QString filename, NeuronNetwork& nn);
+    bool LoadResultConfig(QString filename, NeuronNetwork& nn);
 
 
 };

@@ -66,14 +66,14 @@ Window {
     }
 
 
-    ErrorChart {
-        id: errorchart
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 5
+//    ErrorChart {
+//        id: errorchart
+//        anchors.left: parent.left
+//        anchors.top: parent.top
+//        anchors.margins: 5
 
 
-    }
+//    }
 
     ErrorValidChart {
         id: errorvalidchart
@@ -88,7 +88,7 @@ Window {
         id: panel
         anchors.top: parent.top
         anchors.right: resulttext.left
-        anchors.margins: 5
+
 
     }
 
@@ -97,6 +97,13 @@ Window {
         anchors.top: control.bottom
         anchors.right: resulttext.left
         anchors.margins: 5
+    }
+
+    ConfigPanel {
+        id: configPanel
+        anchors.top: parent.top
+        anchors.right: panel.left
+        anchors.rightMargin: 5
     }
 
 
